@@ -47,10 +47,13 @@ where  l.bevolkingsomvang < 5000000
 
 ## Groepsoefening: Speel een SQL Query
 
-- ieder groepslid heeft een rol: FROM, WHERE, SELECT, ORDER BY (en LIMIT - en GROUP BY??):
+- ieder groepslid heeft een rol: FROM, WHERE, SELECT, ORDER BY (en LIMIT/FETCH FIRST n ROWS ONLY - en GROUP BY??):
   - de deelnemer met FROM mag alleen de relevante vellen selecteren
   - de deelnemer met WHERE mag alleen relevante records selectered (uit de beschikbaar datasets nadat FROM klaar is)
   - de deelnemer met SELECT mag alleen velden selecteren (uit de records die WHERE heeft opgeleverd)
   - de deelnemer met ORDER BY en LIMIT mag de de records selecteren en het aantal beperken
 - met dezelfde datatsets als in de vorige oefening: FILMS, ACTEURS, CAST, LANDEN
-- 
+- voer als groep de volgende queries uit:
+  - select naam, leeftijd from acteurs where geboortedatum > '15-09-1999' order by leeftijd, naam FETCH FIRST 3 ROWS ONLY
+  - select a.naam as acteur from acteurs a join cast c on a.id = c.acteur.id where c.rol = 'Dracula' order by a.naam     
+- - select a.naam as acteur, f.naam as film, f.jaar from acteurs a join cast c on a.id = c.acteur.id join films f on f.id = c.film_id where c.rol = 'Dracula' order by f.jaar, a.naam, f.naam    
