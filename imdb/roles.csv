@@ -1,4 +1,4 @@
-Movie Identifier,Actor Identifier,Character Name,Character Description
+MovieId,ActorId,Character,CharacterDescription
 301,201,Lyra Stormblade,The fearless heroine destined to defeat the dark forces threatening Eldoria.
 301,202,Malik Shadowbane,An evil sorcerer who commands a dark army and seeks the ultimate power hidden in Eldoria.
 301,207,Serena Lightbringer,A noble mage who helps guide the young hero with her ancient wisdom.
@@ -16,7 +16,7 @@ Movie Identifier,Actor Identifier,Character Name,Character Description
 307,205,Isabelle Frost,A ghostly figure trapped in the mansion seeking help but also hiding her true nature.
 308,201,Captain Joran Helix,A courageous starship captain who leads his crew through perilous space battles against a rogue AI.
 308,210,Kaelen Lightstorm,A brilliant but eccentric engineer who can fix anything but has a habit of speaking in riddles.
-309,208,Finn Oaken,A troubled young man trying to reconnect with his estranged family in a remote, cold village.
+309,208,Finn Oaken,A troubled young man trying to reconnect with his estranged family in a remote cold village.
 309,206,Elara Rivers,A local schoolteacher who helps Finn face his past and find redemption in the isolated village.
 310,202,Liriel Stormcaller,A powerful mage with control over the weather struggling to control the eternal storm that threatens her people.
 310,209,Rowan Brightblade,A warrior cursed by the storm forced to protect the mage even as it consumes him.
