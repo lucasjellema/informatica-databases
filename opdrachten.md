@@ -161,10 +161,19 @@ Open DuckDB WebShell (om een SQL database in a browser te starten)
 
 https://shell.duckdb.org/
 
-Voer dit commando uit:
+Je kunt SQL queries uitvoeren tegen een CSV (of JSON of Parquet) file die via HTTP te benaderen is:
+```
+SELECT * 
+FROM   read_csv_auto('https://raw.githubusercontent.com/lucasjellema/informatica-databases/main/imdb/movies.csv')
+;
+```
+
+Voer dit commando uit om een tabel te creëren in de DuckDB instantie in je browser:
 ```
 CREATE TABLE imdb_countries AS
-SELECT * FROM read_csv_auto('https://raw.githubusercontent.com/lucasjellema/informatica-databases/main/imdb/countries.csv');
+SELECT * 
+FROM   read_csv_auto('https://raw.githubusercontent.com/lucasjellema/informatica-databases/main/imdb/countries.csv')
+;
 ```
 
 Om te zien of de tabel goed is gecreëerd en de data is geladen, run dit commando
@@ -183,3 +192,92 @@ SELECT * FROM read_csv_auto('https://raw.githubusercontent.com/lucasjellema/info
 CREATE TABLE imdb_roles AS
 SELECT * FROM read_csv_auto('https://raw.githubusercontent.com/lucasjellema/informatica-databases/main/imdb/roles.csv');
 ```
+
+Je kunt een file toevoegen aan de DuckDB Shell - en daar vervolgens een tabel mee creëren of direct SQL tegen uitvoeren. Maak lokaal een file *landen.csv* met deze inhoud:
+```
+id,afkorting,naam
+1,NL,Nederland
+2,BE,België
+3,FR,Frankrijk
+4,DE,Duitsland
+```
+
+In DuckDB Shell type:
+``` 
+.files add
+```
+
+De browser opent de 'File Browser dialoog'. Selecteer de file *landen.csv*.
+
+Type in de shell:
+```
+.files list
+```
+
+Als het goed is zie je nu onder andere de net toegevoegde file staan.
+
+Voer nu dit statement uit:
+```
+select *
+from   read_csv_auto('landen.csv')
+order 
+by     afkorting
+;
+```
+
+De data in de lokale CSV file is overgedragen aan de DuckDB Web Shell en wordt daar nu (ook) als lokaal beschouwd. Je kunt nu ook een tabel creëren op basis van die data:
+```
+create table landen as select *
+from   read_csv_auto('landen.csv')
+;
+```
+
+en dan:
+
+```
+select *
+from   landen
+order 
+by     afkorting
+;
+```
+Zolang de DuckDB Web Shell sessie bestaat en tot je de file verwijdert en de tabel drop-ped is deze data beschikbaar.
+
+
+# Nieuwe SQL syntax
+
+Is blauwbilgorgel een Nederlands woord?
+Wie bepaalt wat een Nederlands woord is? (jullie kennen woorden die ik niet herken en andersom)
+Is SELECT een SQL woord? En INSERT? Wat dacht je van MERGE? En CUBE, ROLLUP, CROSS JOIN en LEFT OUTER JOIN?
+Wie bepaalt wat standaard SQL is? Wat maakt het uit?
+
+Oude join syntax:
+
+FROM A, B
+where A.id = B.a_id
+
+Nieuwe join syntax:
+FROM A join B on (A.id = B.a_id)
+
+Scheiding tussen de combinatie van tabellen en de logische filtering van de records. In de nieuwe syntax is de WHERE clause betekenisvoller - zonder de technische koppelcondities. En is de join zelf krachtiger geworden, vooral in situaties waar niet elk record gejoined kan worden.
+
+Wat gebeurt hier:
+
+select a.*
+,      c.name
+from   actors a
+,      countries c
+where  a."country reference" = c.id
+
+als een acteur geen country reference heeft of een referentie waarvoor in table countries geen land gevonden kan worden?
+
+alternatief:
+
+select a.*
+,      c.name
+from   actors a
+       left outer join 
+,      countries c
+       on  ( a."country reference" = c.id )
+
+met alleen join doen de twee queries hetzelfde. Met de *left outer* krijgen we altijd de acteur (de linker kan van de join) en ook het land als het er is.
