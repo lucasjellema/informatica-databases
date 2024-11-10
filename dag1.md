@@ -428,6 +428,19 @@ WHERE "Country Reference" = 11
 ;
 ```
 
+In een update statement kunnen meerdere kolommen in één keer worden gewijzigd. In het volgende voorbeeld worden met één statement zowel de *genre* aanduiding als de *Age Indication* aangepast, voor alle movie-records waar Genre nu *Horror* is.
+
+Probeer dit statement uit:
+
+```
+UPDATE
+imdb_movies m 
+SET Genre = 'Scary' , "Age Indication" = 'PG-13'
+WHERE Genre = 'Horror'
+;
+```
+
+
 ### Dangling References / Weduwen en Wezen
 
 Wat denk je van het idee om de *identifier* kolom van een record te wijzigen? Wat zijn de mogelijke problemen daarmee?
