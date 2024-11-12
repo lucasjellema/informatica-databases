@@ -37,7 +37,26 @@ and    r.character = 'Garrick Ironheart'
 ; 
 ```       
 
+select c.capital
+, c.name, a."first name", a."last name"
+from   imdb_movies m 
+       join
+       imdb_roles r
+       on m.identifier = r.MovieId
+       join 
+       imdb_actors a
+       on r.ActorId = a.identifier
+       join 
+       imdb_countries c
+       on a."country reference" = c.identifier
+where  m.title = 'Steelheart''s Revenge'
+and    r.character = 'Garrick Ironheart'      
+; 
+
 ```
+antwoord:
+Aetherport (Terranova) - acteur: Talon Ironheart
+
 - aanvullende opdracht: **in welke films spelen acteurs afkomstig uit een land met een bevolking kleiner dan 5 miljoen? Geef ook de namen van de landen, van de acteurs en van de rollen**
 - (de deelnemers voeren gezamenlijk een soort SQL query uit; in pseudo code:)
 ```
@@ -57,7 +76,9 @@ from   imdb_countries c
        on m.identifier = r.MovieId
 where  c."Population (millions)"  < 5       
 ;
-```       
+```    
+antwoord: Flight of the Phoenix, Crimson Veil, The Last Ember, Frozen Sun  - vanwege acteurs uit Ardoria (land met 4.9M population)
+
 
 - wat is de langste film met een acteur uit Lumora - en hoe lang is die ?
 ```
@@ -104,6 +125,54 @@ limit  1
 ;
 ```
 
+films met meerdere single acteurs
+
+select distinct 
+       m.title
+,      a1.identifier actor1
+,      a2.identifier actor2
+from   imdb_movies m
+       join
+       imdb_roles r
+       on m.identifier = r.MovieId
+       join 
+       imdb_actors a1
+       on r.ActorId = a1.identifier
+       join 
+       imdb_roles r2
+       on m.identifier = r2.MovieId
+       join imdb_actors a2
+       on r2.ActorId = a2.identifier
+where  a1."Relationship Status" = 'Single'
+and    a2."Relationship Status" = 'Single'
+and    a1.identifier != a2.identifier
+
+films met jongste acteur
+
+select a."first name"||' '|| a."last name" as "actor"
+,      m.title as movie
+,      a."birth date"
+from   imdb_movies m 
+       join
+       imdb_roles r
+       on m.identifier = r.MovieId
+       join 
+       imdb_actors a
+       on r.ActorId = a.identifier
+order  
+by     a."birth date" desc
+
+
+
+Welke acteurs hebben een rol gespeeld van een “Agent” character?
+
+select a."first name"||' '|| a."last name" as "actor"
+,      r.character
+from   imdb_roles r
+       join 
+       imdb_actors a
+       on r.ActorId = a.identifier
+where  r.character like 'Agent%'
 
 - geavanceerd - met group by & max/sum/count, having, 
 
@@ -193,6 +262,103 @@ CREATE TABLE imdb_roles AS
 SELECT * FROM read_csv_auto('https://raw.githubusercontent.com/lucasjellema/informatica-databases/main/imdb/roles.csv');
 ```
 
+IMDb indexen 
+
+COPY (SELECT * FROM imdb_actor_birthdate_index) TO 'imdb_actor_birthdate_index.csv' WITH (FORMAT CSV, DELIMITER ',');
+.files download imdb_actor_birthdate_index.csv
+
+``` 
+create table imdb_actor_birthdate_index as
+select a.identifier
+,      a."Birth Date" birthdate
+,      a."first name"||' '|| a."last name" as "name"
+from   imdb_actors a
+order
+by     birthdate desc            
+;
+```  
+
+``` 
+create table imdb_actor_country_index as
+select a.identifier
+,      a."first name"||' '|| a."last name" as "name"
+,      a."Country Reference" as country_id
+from   imdb_actors a
+order
+by     country_id            
+;
+```  
+
+COPY (SELECT * FROM imdb_actor_country_index) TO 'imdb_actor_country_index.csv' WITH (FORMAT CSV, DELIMITER ',');
+.files download imdb_actor_country_index.csv
+
+
+``` 
+create table imdb_single_actors_index as
+select a.identifier
+from   imdb_actors a
+where  a."Relationship Status" = 'Single'
+order
+by     a.identifier            
+;
+```  
+COPY (SELECT * FROM imdb_single_actors_index) TO 'imdb_single_actors_index.csv' WITH (FORMAT CSV, DELIMITER ',');
+.files download imdb_single_actors_index.csv
+
+
+
+create table imdb_roles_by_character_index as
+select r.actorId
+,      r.movieId
+,      r.character
+from   imdb_roles r
+order
+by     r.character
+;
+COPY (SELECT * FROM imdb_roles_by_character_index) TO 'imdb_roles_by_character_index.csv' WITH (FORMAT CSV, DELIMITER ',');
+.files download imdb_roles_by_character_index.csv
+
+
+create table imdb_countries_by_population_index as
+select c.identifier
+,      c.name
+,      c."Population (millions)" as population
+from   imdb_countries c
+order
+by     population
+;
+COPY (SELECT * FROM imdb_countries_by_population_index) TO 'imdb_countries_by_population_index.csv' WITH (FORMAT CSV, DELIMITER ',');
+.files download imdb_countries_by_population_index.csv
+
+
+
+create table imdb_movies_by_genre_duration_index as
+select m.Identifier
+,      m.Title
+,      m.Genre
+,      m.Duration
+from   imdb_movies m
+order
+by     genre, duration
+;
+COPY (SELECT * FROM imdb_movies_by_genre_duration_index) TO 'imdb_movies_by_genre_duration_index.csv' WITH (FORMAT CSV, DELIMITER ',');
+.files download imdb_movies_by_genre_duration_index.csv
+
+
+
+create table imdb_movies_by_duration_index as
+select m.Identifier
+,      m.Duration
+from   imdb_movies m
+order
+by     duration
+;
+COPY (SELECT * FROM imdb_movies_by_duration_index) TO 'imdb_movies_by_duration_index.csv' WITH (FORMAT CSV, DELIMITER ',');
+.files download imdb_movies_by_duration_index.csv
+
+
+
+
 Je kunt een file toevoegen aan de DuckDB Shell - en daar vervolgens een tabel mee creëren of direct SQL tegen uitvoeren. Maak lokaal een file *landen.csv* met deze inhoud:
 ```
 id,afkorting,naam
@@ -243,6 +409,13 @@ by     afkorting
 ```
 Zolang de DuckDB Web Shell sessie bestaat en tot je de file verwijdert en de tabel drop-ped is deze data beschikbaar.
 
+Resultaat van query /inhoud tabel naar file schrijven
+
+COPY (SELECT * FROM X WHERE Z) TO 'my_file.csv' WITH (FORMAT CSV, HEADER);
+
+
+
+
 
 # Nieuwe SQL syntax
 
@@ -281,3 +454,80 @@ from   actors a
        on  ( a."country reference" = c.id )
 
 met alleen join doen de twee queries hetzelfde. Met de *left outer* krijgen we altijd de acteur (de linker kan van de join) en ook het land als het er is.
+
+zie ook:
+
+https://learnsql.com/blog/sql-joins-complete-guide/
+https://learnsql.com/blog/illustrated-guide-sql-outer-join/
+https://learnsql.com/blog/illustrated-guide-sql-cross-join-2/
+
+In iedere sessie een geavanceerd stukje SQL
+
+- GROUP BY SUM, MAX, COUNT, AVG; ROLLUP, CUBE?
+- Types of Join - Outer Join
+- Scalar Subquery, Common Table Expression, WITH
+- MERGE
+- View
+- Macro
+- Functions
+- Data Dictionary
+- Version Query / Flashback
+
+
+## Database Aanpassingen
+
+Regisseurs in eigen tabel ipv als kolom in Movies
+Meerdere regisseurs voor een film
+Acteurs die ook regisseur zijn
+Oscar-nomimation flag - heeft film of acteur (of rol) een of meer Oscar-nominaties gekregen?
+Countries - GDP 
+
+## Onderscheid tussen Tabel en Record / Excel Sheet en Rij / Entiteit en Instantie
+
+Neem twee boeken mee - twee exemplaren van hetzelfde boek. Toon het eerste boek. Wat zijn de eigenschappen? Hoe heet de tabel?
+Toon het tweede boek. Zelfde eigenschappen. Of niet? Wat is het onderscheid tussen de twee?
+
+
+
+## Data Modellering
+
+Vertel een verhaal over een (zakelijke) situatie. Noem enkele zelfstandige naamwoorden - zowel voor entiteiten als voor attributen (tabellen en kolommen). Laat relaties blijken uit de samenhang van entiteiten. Laat leerlingen doorvragen.
+
+laat leerlingen zelf tabellen bedenken, en kolommen en referenties en daar een tabel-structuur voor maken in hun schrift of in een tekstbestand.
+
+Vertel het verhaal anders - nog een keer. Laat de leerlingen data vastleggen in hun tabellen (opschrijven in schrift/typen in text-files)
+Laat queries uitvoeren tegen deze zelfvastgelegde data. 
+Klopt de structuur? Kan je voor de volgende keer een verbetering bedenken?
+
+Vertel het verhaal iets anders/iets uitgebreider. Hierdoor wordt nieuwe data toegevoegd. 
+Doe de query nog een keer.
+
+Laat zien hoe het er in SQL uitziet.
+
+
+
+## Database
+
+Hoe kies je er eentje?
+Welke soorten zijn er?
+
+Open Source/ Closed Source (proprietary, commercieel)/ Open Source als SaaS/Enterprise Service (commercieel, closed source addonms) (gratis game met extra accessores)
+
+overwegingen:
+functioneel
+SQL? als niet, wat dan wel?
+schaal/performance
+kosten (CAPEX en OPEX)
+veiligheid
+standaarden 
+volwassenheid
+kennis/bronnen/"marktaandeel"
+groen
+waar (kan ik hem draaien)
+interoperability - SDKs, client libraries, cloud-support, operating system support, container image?
+hoe makkelijk om te gebruiken?
+ACID
+
+
+
+
