@@ -10,6 +10,7 @@
   - [Create Table with Constraints](#create-table-with-constraints)
     - [NB: DuckDB beperking](#nb-duckdb-beperking)
   - [IMDb met Constraints](#imdb-met-constraints)
+  - [Transacties, Commit en Rollback](#transacties-commit-en-rollback)
   - [Appendix/Solutions](#appendixsolutions)
 
 
@@ -470,6 +471,66 @@ set    id = id * 2
 ```
 
 Klopt je verwachting?
+
+
+## Transacties, Commit en Rollback
+
+Zie https://duckdb.org/docs/sql/statements/transactions 
+
+Je kunt voordat je DML gaat doen een transactie starten:
+
+```
+ begin transaction;
+```
+
+Je kunt de transactie afronden en al je wijzigingen "atomair" laten vastleggen met:
+
+```
+commit;
+```
+
+Maar je kan ook besluiten een transactie geheel ongedaan te maken en alle aanpassingen te laten terugdraaien, met:
+
+```
+rollback;
+```
+
+Laten dat wat eens uitproberen.
+
+Voer uit:
+```
+ begin transaction;
+```
+
+en nu:
+```
+update imdb_movies set duration = duration + 5;
+```
+
+en ook:
+```
+delete from imdb_movies where title like 'Stone%';
+```
+
+Kijk nu hoe de movies er bij staan:
+```
+select title, duration from imdb_movies;
+```
+
+En voer nu de rollback uit:
+
+```
+rollback;
+```
+
+En doe opnieuw de query:
+```
+select title, duration from imdb_movies;
+```
+
+De wijzigingen die eerder waren aangebracht zijn nu terugedraaid. De transactie is atomair ongedaan gemaakt.
+
+
 
 
 ## Appendix/Solutions
