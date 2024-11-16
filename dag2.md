@@ -1,5 +1,18 @@
 # Create Table, Constraints, Transacties, Geavanceerde SQL met aggregatie
 
+- [Create Table, Constraints, Transacties, Geavanceerde SQL met aggregatie](#create-table-constraints-transacties-geavanceerde-sql-met-aggregatie)
+  - [Vul de survey in over de reisbewegingen in Woon-School-verkeer](#vul-de-survey-in-over-de-reisbewegingen-in-woon-school-verkeer)
+  - [Run DuckDB en bouw IMBd](#run-duckdb-en-bouw-imbd)
+  - [Data Manipulatie](#data-manipulatie)
+    - [Dangling References / Weduwen en Wezen](#dangling-references--weduwen-en-wezen)
+  - [Create Table](#create-table)
+  - [Analyseer de Woon-School Reisverkeer Survey](#analyseer-de-woon-school-reisverkeer-survey)
+  - [Create Table with Constraints](#create-table-with-constraints)
+    - [NB: DuckDB beperking](#nb-duckdb-beperking)
+  - [IMDb met Constraints](#imdb-met-constraints)
+  - [Appendix/Solutions](#appendixsolutions)
+
+
 ## Vul de survey in over de reisbewegingen in Woon-School-verkeer
 
 Ga naar : https://forms.office.com/e/a2my57Ydds  en vul de survey in. Je beantwoordt vijf vragen en dient de survey in. De resultaten worden verzameld in een Excel-file die we straks samen gaan analyseren met SQL.
@@ -72,10 +85,9 @@ Het wijzigen van bestaande records doe je met een `UPDATE` statement. Ook in dit
 Het volgende statement wijzigt de waarde in de kolom `Relationship Status` voor alle rijen die voldoen aan de voorwaarde `identifier = 206`. Hoeveel rijen denk je dat aan die voorwaarde voldoen?  
 
 ```
-UPDATE
-imdb_actors 
-SET "Relationship Status" = 'Single'
-WHERE identifier = 206
+UPDATE imdb_actors 
+SET    "Relationship Status" = 'Single'
+WHERE  identifier = 206
 ;
 ```
 Voer dit statement uit. Verifieer het resultaat met een `SELECT` query.
@@ -83,10 +95,9 @@ Voer dit statement uit. Verifieer het resultaat met een `SELECT` query.
 Een `UPDATE` statement kan meerdere rijen wijzigen. Het volgende statement verhuist alle acteurs met een referentie naar country 11 naar country 410. Dat zouden er heel veel kunnen zijn. Of geen één.
 
 ```
-UPDATE
-imdb_actors a 
-SET "Country Reference" = 410
-WHERE "Country Reference" = 11
+UPDATE imdb_actors a 
+SET    "Country Reference" = 410
+WHERE  "Country Reference" = 11
 ;
 ```
 
@@ -95,10 +106,9 @@ In een update statement kunnen meerdere kolommen in één keer worden gewijzigd.
 Probeer dit statement uit:
 
 ```
-UPDATE
-imdb_movies m 
-SET Genre = 'Scary' , "Age Indication" = 'PG-13'
-WHERE Genre = 'Horror'
+UPDATE imdb_movies m 
+SET    Genre = 'Scary' , "Age Indication" = 'PG-13'
+WHERE  Genre = 'Horror'
 ;
 ```
 
@@ -106,7 +116,7 @@ WHERE Genre = 'Horror'
 
 Wat denk je van het idee om de *identifier* kolom van een record te wijzigen? Wat zijn de mogelijke problemen daarmee?
 
-Verwijder het record voor de acteur met identifier gelijk aan 209. Daarvoor schrijf je een `DELETE` statement zoals hierboven besproken. (delete from <tabel> where Identifier = ...)
+Verwijder het record voor de acteur met identifier gelijk aan *209*. Daarvoor schrijf je een `DELETE` statement zoals hierboven besproken. (delete from <tabel> where Identifier = ...)
 
 Query nu alle rollen voor de films met identifiers 306 en 310. je kunt daarvoor het volgende statement gebruiken:
 
@@ -146,6 +156,21 @@ where  m.identifier in (306, 310 )
 
 Kan je het resultaat verklaren? Weet je waar het verschil met de vorige query door wordt veroorzaakt?
 
+Hint:
+
+```
+select m.title as movie
+,      r.actorId
+,      r.character
+from   imdb_movies m 
+       join
+       imdb_roles r
+       on m.identifier = r.MovieId
+where  r.actorId = 209
+;
+```
+
+Het verwijderen van een acteur die meerdere rollen op haar/zijn naam heeft staan zonder die rollen ook te verwijderen zorgt voor een probleem. De referentie van rol naar acteur klopt voor een aantal records niet meer. De joins in de SQL queries werken niet goed. Dit zou niet moeten kunnen gebeuren.
  
 
 ## Create Table
@@ -206,6 +231,7 @@ Analyseer de surveyresultaten en beantwoord de volgende vragen:
 * Hoeveel surveys zijn er per woonplaats ingevuld?
 * Wat is de gemiddelde reisafstand?
 * Wat is de gemiddelde reistijd?
+* Wat is de meest genoemde woonplaats? Hint: [mode()](https://duckdb.org/docs/sql/functions/aggregates.html#modex)  
 * Welke vervoermiddelen zijn in gebruik? Hoeveel van elk vervoermiddel?
 * Wat zijn de top 3 vervoermiddelen?  Hint: `order by` en `limit`
 * Wat is de langste reistijd? En wat is de langste reistijd per woonplaats?
@@ -226,6 +252,224 @@ having count(voornaam) > 2
 
 Wat is de langste reistijd per vervoermiddel voor ieder vervoermiddel dat door tenminste drie survey-deelnemers is ingevuld.
 
+
+## Create Table with Constraints
+
+Kijk naar deze tabel definitie. Welke constraints zijn gedefinieerd voor deze tabel? Je zou tenminste zes expliciete constraints (primary, unique, foreign en check) moeten zien en nog een aantal impliciete constraints (data type, lengte/breedte kolom). Samen moeten deze constraints zorgen voor kwalitatief hoogwaardige data.
+
+Voer het statement ook uit om de tabel aan te maken:
+```
+create table people
+( id        int           primary key
+, name      varchar(15)   not null unique check (length(name) <= 15)
+, birthdate date          check (birthdate <= CURRENT_DATE() - INTERVAL 18 YEAR) 
+, parent_id int           references people (id)
+, city      varchar(50)   default 'Soest' check (NOT contains(upper(city), 'A'))  
+)
+```
+
+Naar welke tabel verwijst (de foreign key op) kolom parent_id?
+
+Dit statement maak een record aan in tabel *people*:
+
+```
+insert into people (id,name,birthdate) values (13, 'Donald Duck', DATE '1934-06-09');
+```
+Waar woont Donald Duck (volgens de data in de tabel)? Dit is het gevolg van de *default* die voor de *city* kolom is gedefinieerd.  
+
+
+Wat gebeurt er met dit volgende insert statement:
+
+```
+insert into people (id,name,birthdate, parent_id) values (13, 'Donald John Trump', DATE '2046-06-14', 16);
+```
+
+Hoeveel aanpassingen moeten aan dit insert statement worden gedaan om het succesvol te maken?
+* id moet uniek zijn
+* birthdate moet tenminste 18 jaar in het verleden liggen
+* parent_id moet verwijzen naar een bestaan (person) record in de PEOPLE tabel
+* name moet niet langer zijn dan 15 karakters
+
+Pas het statement aan en voer het uit. NB: Donald J. Trump is geboren in 1946 (op 14 juni). En oh ja: zijn woonplaats wordt Washington (niet Soest).
+
+Hier is het aangepaste insert statement dat wel succesvol is:
+```
+insert into people (id,name,birthdate, parent_id) values (15, 'Donald J. Trump', DATE '1946-06-14', 13);
+```
+
+Wat denk je dat er gebeurt met het volgende statement:
+```
+delete from people where id = 13
+```
+Probeer het uit.
+
+Als gevolg van het foreign key constraint mag een record alleen nog uit PEOPLE worden verwijderd als geen ander record ernaar verwijst.
+
+Deze combinatie van statements zou het wel moeten doen:
+
+```
+delete from people where parent_id = 13; 
+delete from people where id = 13;
+```
+
+### NB: DuckDB beperking 
+
+Er zit een beperking in DuckDB die het updaten van een record in een primary of unique constraint erg lastig maakt. Dit is een tijdelijke beperking (hopelijk) en niet eentje die voor andere databases geldt.
+
+In het voorgaande voorbeeld konden we dus niet doen:
+
+```
+update people set parent_id = null where parent_id = 13; 
+delete from people where id = 13;
+```
+
+hoewel dat in standaard SQL een prima actie is. 
+
+
+## IMDb met Constraints
+
+Herstart DuckDB of verwijder de IMDb tabellen met deze statements:
+
+```
+drop TABLE imdb_countries;
+drop TABLE imdb_movies;
+drop TABLE imdb_actors;
+drop TABLE imdb_roles;
+```
+maak nu de IMDb tabellen aan met de volgend statements:
+
+```
+create table imdb_countries
+( id           int primary key
+, name         varchar not null
+, capital      varchar
+, country_code varchar not null unique
+, population   decimal(5,1)
+, currency     varchar
+, area         decimal(10,2)
+)
+;
+```
+
+```
+create table imdb_actors
+( id           int primary key
+, first_name   varchar not null
+, last_name    varchar not null
+, country_id   int null references imdb_countries(id)
+, birth_date   date
+, birth_city   varchar
+, city         varchar
+, nick_name    varchar
+, relationship_status varchar check (relationship_status in ('Single', 'Married', 'In a relationship'))
+)
+;
+```
+
+```
+create table imdb_movies
+( id             int primary key
+, title          varchar not null
+, genre          varchar not null
+, duration       USMALLINT
+, release_year   USMALLINT check (release_year between 1890 and 2030)
+, description    varchar
+, age_indication varchar check (age_indication in ('PG','PG-13','R','X',''))
+, language       varchar
+, director       varchar
+)
+;
+```
+
+```
+create table imdb_roles
+( movieid        int not null references imdb_movies (id)
+, actorid        int not null references imdb_actors (id)
+, character      varchar not null
+, characterdescription    varchar
+)
+;
+```
+
+Laad data uit de cvs-files in deze tabellen met de volgende statements:
+
+```
+insert into imdb_countries 
+( name
+, id        
+, capital     
+, country_code
+, population  
+, currency    
+, area   
+)
+SELECT *
+FROM   read_csv('https://raw.githubusercontent.com/lucasjellema/informatica-databases/main/imdb/countries.csv');
+;
+```
+```
+insert into imdb_actors
+( first_name   
+, last_name    
+, id
+, country_id    
+, birth_date   
+, birth_city   
+, city         
+, nick_name    
+, relationship_status 
+)
+select * 
+from   read_csv('https://raw.githubusercontent.com/lucasjellema/informatica-databases/main/imdb/actors.csv');
+```
+
+```
+insert into imdb_movies
+( id             
+, title          
+, genre          
+, description    
+, duration       
+, release_year   
+, age_indication 
+, language       
+, director       
+)
+select * 
+from   read_csv('https://raw.githubusercontent.com/lucasjellema/informatica-databases/main/imdb/movies.csv');
+```
+```
+insert into imdb_roles
+( movieid      
+, actorid      
+, character    
+, characterdescription 
+)
+select * 
+from   read_csv('https://raw.githubusercontent.com/lucasjellema/informatica-databases/main/imdb/roles.csv');
+```
+
+Alle data is nu geladen in de tabellen die we eerder hadden gedefinieerd - compleet met contraints. Nu zouden we niet meer een acteur kunnen verwijderen die nog in rollen zit of een land waar nog acteur records naar verwijzen. Laten we dat controleren: 
+
+Probeer acteur met id == 209 weg te gooien
+
+```
+delete from imdb_actors
+where  id = 209
+;
+```
+
+Als je dit statement uitvoert krijg je een foutmelding die aangeeft *Constraint Error: Violates foreign key constraint because key "actorid: 209" is still referenced by a foreign key in a different table*. Er zijn records in IMDB_ROLES die de waarde 209 als ACTOR_ID hebben. Helaas, pindakaas!
+
+Kan je de primary key wijzigen? Wat denk je? Probeer:
+
+```
+update imdb_countries
+set    id = id * 2
+;
+```
+
+Klopt je verwachting?
 
 
 ## Appendix/Solutions
