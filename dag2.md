@@ -207,7 +207,7 @@ Creëer een tabel om deze ruwe data in je DuckDB database vast te leggen:
 
 ```
 create table survey_results 
-( x1 varchar, x2 varchar, x3 varchar, x4 varchar, x5 varchar
+( x1 varchar, x2 varchar, x3 varchar, x4 varchar, x5 varchar, x6 varchar
 , voornaam varchar
 , woonplaats varchar 
 , reisafstand decimal(5,2) -- 5 cijfers, maximaal 2 achter de comma
