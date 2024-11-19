@@ -1,21 +1,21 @@
 ID,Start time,Completion time,Email,Name,Last modified time,Wat is je voornaam?,Wat is je woonplaats?,Wat is ongeveer de afstand (in km) van je huis naar school?,Hoe lang (in minuten) duurt je reis van huis naar school gemiddeld ?,Met welk vervoersmiddel reis je meestal naar school?
 1,11-16-24 8:24:14,11-16-24 10:06:55,anonymous,,,Lucas,Zoetermeer,75.3,58,Auto
-2,11-19-24 8:52:00,11-19-24 8:52:35,anonymous,,,Friso,Soest,"1.5",5-7 minuten,Fiets
+2,11-19-24 8:52:00,11-19-24 8:52:35,anonymous,,,Friso,Soest,1.5,6,Fiets
 3,11-19-24 8:50:55,11-19-24 8:52:35,anonymous,,,Benjamin,Eemdijk,10.4,30,eBike (inclusief Fatbike)
 4,11-19-24 8:52:03,11-19-24 8:52:37,anonymous,,,Jan,Soest,4,10,eBike (inclusief Fatbike)
-5,11-19-24 8:51:39,11-19-24 8:52:40,anonymous,,,Teun,Soest,"7.5",20,Fiets
+5,11-19-24 8:51:39,11-19-24 8:52:40,anonymous,,,Teun,Soest,7.5,20,Fiets
 6,11-19-24 8:52:29,11-19-24 8:53:20,anonymous,,,Chiel ,Baarn ,6,17,Scooter/Bromfiets
 7,11-19-24 8:51:56,11-19-24 8:53:48,anonymous,,,kay ,soest ,2,5,Fiets
-8,11-19-24 8:53:22,11-19-24 8:53:57,anonymous,,,Floris,Soest,2,8/10,Fiets
-9,11-19-24 8:50:59,11-19-24 8:54:08,anonymous,,,Thijs,Baarn,"2.7",7,Fiets
-10,11-19-24 8:51:50,11-19-24 8:54:24,anonymous,,,Joost,soest,"4.8",12,Scooter/Bromfiets
-11,11-19-24 8:52:44,11-19-24 8:54:27,anonymous,,,Thomas,soest,"3,7",12 min,Fiets
+8,11-19-24 8:53:22,11-19-24 8:53:57,anonymous,,,Floris,Soest,2,9,Fiets
+9,11-19-24 8:50:59,11-19-24 8:54:08,anonymous,,,Thijs,Baarn,2.7,7,Fiets
+10,11-19-24 8:51:50,11-19-24 8:54:24,anonymous,,,Joost,soest,4.8,12,Scooter/Bromfiets
+11,11-19-24 8:52:44,11-19-24 8:54:27,anonymous,,,Thomas,soest,3.7,12,Fiets
 12,11-19-24 8:53:42,11-19-24 8:54:40,anonymous,,,Thom,Soest,1,5,Fiets
-13,11-19-24 8:52:53,11-19-24 8:54:41,anonymous,,,Ryan,Soest,5 kilometer,20 tot 25 minuten,Fiets
+13,11-19-24 8:52:53,11-19-24 8:54:41,anonymous,,,Ryan,Soest,5,22,Fiets
 14,11-19-24 8:51:24,11-19-24 8:54:43,anonymous,,,Tristan,soest,3.6,5,Scooter/Bromfiets
-15,11-19-24 8:53:33,11-19-24 8:55:26,anonymous,,,Luuk ,Soest,2.5,8 minuten,Fiets
+15,11-19-24 8:53:33,11-19-24 8:55:26,anonymous,,,Luuk ,Soest,2.5,8,Fiets
 16,11-19-24 8:53:37,11-19-24 8:56:56,anonymous,,,Dilara,Soest,2.7,10,Scooter/Bromfiets
 17,11-19-24 8:57:09,11-19-24 8:57:51,anonymous,,,Noortje,Baarn,3.9,18,Fiets
-18,11-19-24 8:54:07,11-19-24 8:58:00,anonymous,,,Carlyn,Soest,4.2 ,15 ,Fiets
-19,11-19-24 8:55:16,11-19-24 8:58:49,anonymous,,,warner,baarn,"2.8",9 min,Fiets
-20,11-19-24 8:59:42,11-19-24 9:00:30,anonymous,,,Noah,Baarn,"3.5",10-15 ,Fiets
+18,11-19-24 8:54:07,11-19-24 8:58:00,anonymous,,,Carlyn,Soest,,15,Fiets
+19,11-19-24 8:55:16,11-19-24 8:58:49,anonymous,,,warner,baarn,2.8,9,Fiets
+20,11-19-24 8:59:42,11-19-24 9:00:30,anonymous,,,Noah,Baarn,3.5,13,Fiets
