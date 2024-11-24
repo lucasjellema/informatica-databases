@@ -8,6 +8,8 @@
 - [Analyseer de Woon-School Reisverkeer Survey](#analyseer-de-woon-school-reisverkeer-survey)
 - [Datamodellering](#datamodellering)
   - [Ticket-Shop](#ticket-shop)
+  - [Maak een Datamodel voor Registratie van Health Metrics](#maak-een-datamodel-voor-registratie-van-health-metrics)
+  - [GAME ON: Teken het Datamodel voor deze tabellen](#game-on-teken-het-datamodel-voor-deze-tabellen)
   - [Maak een praktijk-datamodel voor de praktijk](#maak-een-praktijk-datamodel-voor-de-praktijk)
   - [Interpreteer en completeer datamodel](#interpreteer-en-completeer-datamodel)
   - [Maak de Create Table scripts voor een data-model](#maak-de-create-table-scripts-voor-een-data-model)
@@ -129,6 +131,96 @@ Het datamodel voor een online ticket-shop is in de volgende plaat afgebeeld. Er 
 Hint: kijk goed naar het screenshot van de bevestigingsemail die de klant heeft ontvangen na het kopen van de tickets.
 
 ![](files/2024-11-24-13-24-18.png)
+
+
+## Maak een Datamodel voor Registratie van Health Metrics
+
+Of je nou een fitbit hebt of een smartwatch of dat je met je telefoon data verzamelt over je dagelijkse fysieke activiteiten, het ligt erg voor de hand deze gegevens in tabellen in een database vast te leggen. Je kunt zelf een data model ontwerpen - met tabellen voor de activiteiten en metingen op een dag en de categorieën of activiteit types (zoals afstand gerend, hoogtemeters gelopen, aantal stappen, gewicht, bloeddruk).
+
+Je kan ook ChatGPT gebruiken om je te helpen. Zie [deze link](https://chatgpt.com/share/67433d78-c62c-8005-b456-2eb90cd635b5) voor een korte dialoog met ChatGPT en kant en klare tabel definities.
+
+## GAME ON: Teken het Datamodel voor deze tabellen
+
+Teken de tabellen en hun onderlinge relaties op basis van deze DDL (SQL Data Definition Language) statements. Wat voor data wordt in deze tabellen vastgelegd?
+
+```
+CREATE TABLE GAMES (
+    id INT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,  
+    release_date DATE NOT NULL,  
+    publisher VARCHAR(150)        
+);
+
+CREATE TABLE PLAYERS (
+    id INT PRIMARY KEY,
+    first_name VARCHAR(100) NOT NULL,  
+    last_name VARCHAR(100) NOT NULL,   
+    nickname VARCHAR(150),
+    avatar    BLOB              
+);
+
+CREATE TABLE SCORES (
+    id INT PRIMARY KEY,
+    game_id INT NOT NULL REFERENCES GAMES(id),    
+    player_id INT NOT NULL REFERENCES PLAYERS(id),
+    score INT NOT NULL,   -- Player's score in the game
+    game_finish_timestamp TIMESTAMP NOT NULL,  
+    comment varchar -- toelichting op deze score 
+);
+```
+
+Zouden "Top 5" en "High Scores" niet ook tabellen moeten zijn?
+
+NB: ChatGPT is zo vriendelijk om ook al een paar voorbeeld SQL queries beschikbaar te stellen:
+
+Retrieve All Scores for a Specific Game (id = 1):
+
+```
+SELECT p.first_name, p.last_name, s.score
+FROM SCORES s
+JOIN PLAYERS p ON s.player_id = p.id
+WHERE s.game_id = 1;
+```
+
+Total Scores for Each Player Across All Games:
+```
+SELECT p.first_name, p.last_name, SUM(s.score) AS total_score
+FROM SCORES s
+JOIN PLAYERS p ON s.player_id = p.id
+GROUP BY p.id, p.first_name, p.last_name;
+```
+De tweede query slaat eigenlijk nergens op. Waarom zou je scores voor verschillende games bij elkaar optellen? Goed bedoeld, maar slecht begrepen lijkt mij.
+
+Hier de INSERT statements om data in de tabellen te stoppen:
+
+```
+INSERT INTO GAMES (id, name, release_date, publisher) VALUES 
+(1, 'Super Smash Bros Ultimate', '2018-12-07', 'Nintendo'),
+(2, 'League of Legends', '2009-10-27', 'Riot Games'),
+(3, 'The Legend of Zelda: Breath of the Wild', '2017-03-03', 'Nintendo'),
+(4, 'Minecraft', '2011-11-18', 'Mojang Studios'),
+(5, 'Call of Duty: Modern Warfare II', '2022-10-28', 'Activision');
+INSERT INTO PLAYERS (id, first_name, last_name, nickname, avatar) VALUES 
+(1, 'Alice', 'Smith', 'AceGamer', NULL),
+(2, 'Bob', 'Jones', 'ShadowHunter', NULL),
+(3, 'Carol', 'Brown', 'ZeldaFan99', NULL),
+(4, 'Dave', 'Wilson', 'BlockBuilder', NULL),
+(5, 'Emma', 'Johnson', 'CoDMaster', NULL);
+INSERT INTO SCORES (id, game_id, player_id, score, game_finish_timestamp, comment) VALUES 
+(1, 1, 1, 1500, '2024-11-22 14:30:00', 'New personal best!'),
+(2, 1, 2, 1450, '2024-11-22 14:32:00', 'So close to beating Alice!'),
+(10, 1, 2, 250, '2024-11-19 14:32:00', 'Toen moest ik het nog leren!'),
+(7, 1, 1, 520, '2024-11-22 14:30:00', 'Niet zo goed!'),
+(8, 1, 3, 1000, '2024-11-24 16:00:00', 'Mijn moeder kwam halverwege binnen.'),
+(9, 1, 4, 900, '2024-11-24 18:45:00', 'Voor een eerste keer...'),
+(3, 2, 2, 2000, '2024-11-23 16:00:00', 'Ranked match victory.'),
+(4, 3, 3, 1200, '2024-11-21 18:45:00', 'Completed Master Trials'),
+(5, 4, 4, 800, '2024-11-23 10:15:00', 'Built a massive city.'),
+(6, 5, 5, 2500, '2024-11-24 20:00:00', 'Dominated multiplayer.');
+```
+
+Schrijf een SQL Query om de leaderboard (top 3) te bepalen voor *Super Smash Bros Ultimate* (game met id = 1). Toon de top 3 scores met naam van de speler, score, datum en tijd en comment.
+
 
 ## Maak een praktijk-datamodel voor de praktijk
 
