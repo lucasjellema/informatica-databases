@@ -40,7 +40,7 @@ Je kan een file naar dit tool uploaden, je ziet de ruwe content en je kan onder 
 
 Welk dier zit verscholen in deze file: [uitzoeker.qqq](files/uitzoeker.qqq)
 
-Een iets ingewikkelder puzzel is file [Je kunt hier een dier mee vinden.xxx](files/Je kunt hier een dier mee vinden.xxx). Inspecteer de file. Bepaal de juiste extensie. Open de file met een programma dat het goed kan weergeven. Gebruik de inhoud van programma om een dier te vinden.
+Een iets ingewikkelder puzzel is file [Je kunt hier een dier mee vinden.xxx](files/Je-kunt-hier-een-dier-mee-vinden.xxx). Inspecteer de file. Bepaal de juiste extensie. Open de file met een programma dat het goed kan weergeven. Gebruik de inhoud van programma om een dier te vinden.
 
 Welk getal wordt indirect aangeduid via deze file: [i-love-you-in-sign.png](files/i-love-you-in-sign.png)
 
