@@ -36,13 +36,15 @@ Stuur deze QR Code via mail of chat of als foto en zorg dat tenminste klasgenoot
 ## File Identificatie
 Een file heeft vaak een extensie - de laatste drie of vier letters, achter de punt. Zoals docx, xlsx, gif, mp4, jpg, mp3, txt. exe. Deze extensie is een aanwijzing aan je operating system wat voor soort file het is en wat voor soort programma de file kan worden geopend.
 
-De extensie is een hint - geen garantie. Een file kan een verkeerde extensie hebben (inhoud en extensie kloppen niet met elkaar) of zelfs geen extensie. Je kunt gebruikmaken van dit tool om ruwe file content te onderzoeken: https://hexed.it/ . In de ruwe contents van de meeste files zit informatie waarmee je zelf kan bedenken wat het formaat is van de fileinhoud en dus ook welke extensie er eigenlijk bij hoort.
+De extensie is een hint - geen garantie. Een file kan een verkeerde extensie hebben (inhoud en extensie kloppen niet met elkaar) of zelfs geen extensie. 
 
-Je kan een file naar dit tool uploaden, je ziet de ruwe content en je kan onder menuoptie Tools de optie File Format Identification kijken naar wat voor soort content de file bevat volgens dit tool.
+Welk dier zit verscholen in deze file: [uitzoeker.qqq](files/uitzoeker.qqq). Deze file bevat een plaatje in PNG formaat.
 
-Welk dier zit verscholen in deze file: [uitzoeker.qqq](files/uitzoeker.qqq)
+Een iets ingewikkelder puzzel is file [Je kunt hier een dier mee vinden.xxx](files/Je-kunt-hier-een-dier-mee-vinden.xxx). 
 
-Een iets ingewikkelder puzzel is file [Je kunt hier een dier mee vinden.xxx](files/Je-kunt-hier-een-dier-mee-vinden.xxx). Inspecteer de file. Bepaal de juiste extensie. Open de file met een programma dat het goed kan weergeven. Gebruik de inhoud van programma om een dier te vinden.
+Je kunt gebruikmaken van dit tool om ruwe file content te onderzoeken: https://hexed.it/ . In de ruwe contents van de meeste files zit informatie waarmee je zelf kan bedenken wat het formaat is van de fileinhoud en dus ook welke extensie er eigenlijk bij hoort. Je kan een file naar dit tool uploaden, je ziet de ruwe content en je kan onder menuoptie Tools de optie File Format Identification kijken naar wat voor soort content de file bevat volgens dit tool.
+
+Inspecteer de file. Bepaal de juiste extensie. Open de file met een programma dat het goed kan weergeven. Gebruik de inhoud van programma om een dier te vinden.
 
 Welk getal wordt indirect aangeduid via deze file: [i-love-you-in-sign.png](files/i-love-you-in-sign.png)
 
