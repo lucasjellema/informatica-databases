@@ -222,6 +222,27 @@ Druk op *Run*.
 Dit zou specifieke details moeten opleveren.
 
 
+Voeg deze twee regels toe om de Top 3 van langste reisafstanden - met vervoermiddel en reistijd - op te vragen voor wie in Soest woont:
+```
+print("Top 3 reisafstand voor Soestenaren")
+db.survey.find({Woonplaats:"Soest"},{Reistijd:1, Vervoermiddel:1, Reisafstand:1}).sort({Reisafstand:-1}).limit(3)
+```
+Druk op *Run* en kijk onderaan naar het resultaat.
+
+Voeg dit snippet onderaan toe om per woonplaats de maximale reisafstand en reistijd en ook de totale reisafstand op te vragen:
+
+```
+db.survey.aggregate([
+  {
+    $group: {
+      _id: { Woonplaats: "$Woonplaats" },
+      maximale_reisafstand: { $max: "$Reisafstand" },
+      maximale_reistijd: { $max: "$Reistijd" },
+      totale_reisafstand: { $sum: "$Reisafstand" }
+    }
+  }
+]);
+```
 
 
 
