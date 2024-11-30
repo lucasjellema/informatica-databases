@@ -2,7 +2,7 @@
 
 - [Create Table, Constraints, Transacties, Geavanceerde SQL met aggregatie](#create-table-constraints-transacties-geavanceerde-sql-met-aggregatie)
   - [Vul de survey in over de reisbewegingen in Woon-School-verkeer](#vul-de-survey-in-over-de-reisbewegingen-in-woon-school-verkeer)
-  - [Run DuckDB en bouw IMBd](#run-duckdb-en-bouw-imbd)
+  - [Run DuckDB en bouw IMDb](#run-duckdb-en-bouw-imdb)
   - [Data Manipulatie](#data-manipulatie)
     - [Dangling References / Weduwen en Wezen](#dangling-references--weduwen-en-wezen)
   - [Create Table](#create-table)
@@ -20,7 +20,7 @@ Ga naar : https://forms.office.com/e/a2my57Ydds  en vul de survey in. Je beantwo
 
 
 
-## Run DuckDB en bouw IMBd 
+## Run DuckDB en bouw IMDb 
 Je kunt DuckDB eenvoudig draaien via de DuckDB WebShell (om een SQL database in a browser te starten) via deze link: https://shell.duckdb.org/.
 
 Je kunt ook DuckDB eenvoudig installeren. Ga naar [duckdb.org/docs/installation](https://duckdb.org/docs/installation) en download de stable version, Command Line environment voor jouw Platform. De download bevat een executable file (duckdb.exe). Extraheer deze uit het archief en start deze file. 
