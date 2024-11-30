@@ -1,0 +1,166 @@
+{
+    "Survey": {
+      "Response": [
+        {
+          "ID": "1",
+          "Voornaam": "Lucas",
+          "Woonplaats": "Zoetermeer",
+          "Reisafstand": "75.3",
+          "Reistijd": "58",
+          "Vervoermiddel": "Auto"         
+        },
+        {
+          "ID": "2",
+          "Voornaam": "Friso",
+          "Woonplaats": "Soest",
+          "Reisafstand": "1.5",
+          "Reistijd": "6",
+          "Vervoermiddel": "Fiets"
+        },
+        {
+          "ID": "3",
+          "Voornaam": "Benjamin",
+          "Woonplaats": "Eemdijk",
+          "Reisafstand": "10.4",
+          "Reistijd": "30",
+          "Vervoermiddel": "eBike (inclusief Fatbike)"
+        },
+        {
+          "ID": "4",
+          "Voornaam": "Jan",
+          "Woonplaats": "Soest",
+          "Reisafstand": "4",
+          "Reistijd": "10",
+          "Vervoermiddel": "eBike (inclusief Fatbike)"
+        },
+        {
+          "ID": "5",
+          "Voornaam": "Teun",
+          "Woonplaats": "Soest",
+          "Reisafstand": "7.5",
+          "Reistijd": "20",
+          "Vervoermiddel": "Fiets"
+        },
+        {
+          "ID": "6",
+          "Voornaam": "Chiel",
+          "Woonplaats": "Baarn ",
+          "Reisafstand": "6",
+          "Reistijd": "17",
+          "Vervoermiddel": "Scooter/Bromfiets"
+        },
+        {
+          "ID": "7",
+          "Voornaam": "kay ",
+          "Woonplaats": "soest ",
+          "Reisafstand": "2",
+          "Reistijd": "5",
+          "Vervoermiddel": "Fiets"
+        },
+        {
+          "ID": "8",
+          "Voornaam": "Floris",
+          "Woonplaats": "Soest",
+          "Reisafstand": "2",
+          "Reistijd": "9",
+          "Vervoermiddel": "Fiets"
+        },
+        {
+          "ID": "9",
+          "Voornaam": "Thijs",
+          "Woonplaats": "Baarn",
+          "Reisafstand": "2.7",
+          "Reistijd": "7",
+          "Vervoermiddel": "Fiets"
+        },
+        {
+          "ID": "10",
+          "Voornaam": "Joost",
+          "Woonplaats": "soest",
+          "Reisafstand": "4.8",
+          "Reistijd": "12",
+          "Vervoermiddel": "Scooter/Bromfiets"
+        },
+        {
+          "ID": "11",
+          "Voornaam": "Thomas",
+          "Woonplaats": "soest",
+          "Reisafstand": "3.7",
+          "Reistijd": "12",
+          "Vervoermiddel": "Fiets"
+        },
+        {
+          "ID": "12",
+          "Voornaam": "Thom",
+          "Woonplaats": "Soest",
+          "Reisafstand": "1",
+          "Reistijd": "5",
+          "Vervoermiddel": "Fiets"
+        },
+        {
+          "ID": "13",
+          "Voornaam": "Ryan",
+          "Woonplaats": "Soest",
+          "Reisafstand": "5",
+          "Reistijd": "22",
+          "Vervoermiddel": "Fiets"
+        },
+        {
+          "ID": "14",
+          "Voornaam": "Tristan",
+          "Woonplaats": "soest",
+          "Reisafstand": "3.6",
+          "Reistijd": "5",
+          "Vervoermiddel": "Scooter/Bromfiets"
+        },
+        {
+          "ID": "15",
+          "Voornaam": "Luuk ",
+          "Woonplaats": "Soest",
+          "Reisafstand": "2.5",
+          "Reistijd": "8",
+          "Vervoermiddel": "Fiets"
+        },
+        {
+          "ID": "16",
+          "Voornaam": "Dilara",
+          "Woonplaats": "Soest",
+          "Reisafstand": "2.7",
+          "Reistijd": "10",
+          "Vervoermiddel": "Scooter/Bromfiets"
+        },
+        {
+          "ID": "17",
+          "Voornaam": "Noortje",
+          "Woonplaats": "Baarn",
+          "Reisafstand": "3.9",
+          "Reistijd": "18",
+          "Vervoermiddel": "Fiets"
+        },
+        {
+          "ID": "18",
+          "Voornaam": "Carlyn",
+          "Woonplaats": "Soest",
+          "Reisafstand": "",
+          "Reistijd": "15",
+          "Vervoermiddel": "Fiets"
+        },
+        {
+          "ID": "19",
+          "Voornaam": "warner",
+          "Woonplaats": "baarn",
+          "Reisafstand": "2.8",
+          "Reistijd": "9",
+          "Vervoermiddel": "Fiets"
+        },
+        {
+          "ID": "20",
+          "Voornaam": "Noah",
+          "Woonplaats": "Baarn",
+          "Reisafstand": "3.5",
+          "Reistijd": "13",
+          "Vervoermiddel": "Fiets"
+        }
+      ]
+    }
+  }

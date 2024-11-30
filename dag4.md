@@ -7,6 +7,7 @@
     - [JSON communicatie achter Reisplanner](#json-communicatie-achter-reisplanner)
   - [Introductie NoSQL Database MongoDB](#introductie-nosql-database-mongodb)
   - [Query Documenten in MongoDB](#query-documenten-in-mongodb)
+    - [Onderzoek Survey Results met MongoDB](#onderzoek-survey-results-met-mongodb)
   - [Vergelijk SQL en NoSQL](#vergelijk-sql-en-nosql)
 
 
@@ -180,6 +181,49 @@ Begrijp je wat hier gebeurt? Weet je hoe je het document voor Jochem kan verwijd
 ## Query Documenten in MongoDB
 
 Vind informatie met verschillende, enigszins ingewikkelde queries
+
+
+### Onderzoek Survey Results met MongoDB
+
+Open de link https://onecompiler.com/mongodb opnieuw. Vervang de inhoud van het text kader met:
+
+```
+const s= <vervang> 
+db.survey.insertMany(s.Survey.Response  )
+db.survey.find()
+```
+Vervang de string *<vervang>* met de inhoud van file [survey_results.json](survey/survey_results.json). Dat ziet dus ongeveer als volgt uit:
+
+```
+const s= const s = {
+    "Survey": {
+      "Response": [
+        {
+        ...
+      ]
+    }
+}        
+db.survey.insertMany(s.Survey.Response  )
+db.survey.find()
+```
+Druk op *Run* om te zien of de data goed geladen is.
+
+Nu kan je gaan zoeken, bijvoorbeeld op woonplaats of vervoermiddel. Voeg deze regels toe, onderaan:
+
+```
+print("Woonplaatsen van alle FIETS berijders")
+db.survey.find({Vervoermiddel:"Fiets"},{Woonplaats:1})
+print("Details voor Soestenaren")
+db.survey.find({Woonplaats:"Soest"},{Reistijd:1, Vervoermiddel:1, Reisafstand:1})
+```
+
+Druk op *Run*.
+
+Dit zou specifieke details moeten opleveren.
+
+
+
+
 
 ## Vergelijk SQL en NoSQL
 
