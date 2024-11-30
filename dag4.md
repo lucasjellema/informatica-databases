@@ -1,25 +1,14 @@
 # JSON en NoSQL Database
 
-- [Data Formaten, Data Modellering, Advanced SQL](#data-formaten-data-modellering-advanced-sql)
-  - [Data Analyse](#data-analyse)
-  - [File Identificatie](#file-identificatie)
-    - [Escape Room Style (Binair Tellen op je vingers)](#escape-room-style-binair-tellen-op-je-vingers)
-    - [Nullen en Enen - van karakters, bytes en bits](#nullen-en-enen---van-karakters-bytes-en-bits)
-- [Analyseer de Woon-School Reisverkeer Survey](#analyseer-de-woon-school-reisverkeer-survey)
-- [Datamodellering](#datamodellering)
-  - [Ticket-Shop](#ticket-shop)
-  - [Maak een Datamodel voor Registratie van Health Metrics](#maak-een-datamodel-voor-registratie-van-health-metrics)
-  - [GAME ON: Teken het Datamodel voor deze tabellen](#game-on-teken-het-datamodel-voor-deze-tabellen)
-  - [Maak een praktijk-datamodel voor de praktijk](#maak-een-praktijk-datamodel-voor-de-praktijk)
-  - [Interpreteer en completeer datamodel](#interpreteer-en-completeer-datamodel)
-  - [Maak de Create Table scripts voor een data-model](#maak-de-create-table-scripts-voor-een-data-model)
-- [Advanced SQL : Scalar Subquery en Common Table Expression (CTE)](#advanced-sql--scalar-subquery-en-common-table-expression-cte)
-  - [Run DuckDB en bouw IMDb](#run-duckdb-en-bouw-imdb)
-  - [Scalar Subquery](#scalar-subquery)
-    - [Common Table Expression](#common-table-expression)
-  - [Appendix](#appendix)
-    - [Data Modellering Ticketshop](#data-modellering-ticketshop)
-    - [Scalar Subquery en Common Table Expression](#scalar-subquery-en-common-table-expression)
+- [JSON en NoSQL Database](#json-en-nosql-database)
+  - [JSON](#json)
+    - [JSON in Web Applicaties](#json-in-web-applicaties)
+    - [Simpel JSON](#simpel-json)
+    - [JSON communicatie achter Reisplanner](#json-communicatie-achter-reisplanner)
+  - [Introductie NoSQL Database MongoDB](#introductie-nosql-database-mongodb)
+  - [Query Documenten in MongoDB](#query-documenten-in-mongodb)
+  - [Vergelijk SQL en NoSQL](#vergelijk-sql-en-nosql)
+
 
 
 ## JSON
@@ -130,12 +119,63 @@ kan je zoeken naar de trips waar geen overstap bij nodig is. Je kunt ook zoeken 
 
 ## Introductie NoSQL Database MongoDB
 
-Maak database met https://onecompiler.com/mongodb
-Maak collection
-Stop er een JSON document in
-Doe de simpelste query
-Generate nieuw JSON document https://json-generator.com/
-en stop in DB
+Open de link https://onecompiler.com/mongodb. De site opent met een code editor die deze code bevat:
+```
+db.employees.insertMany([
+  {empId: 1, name: 'Clark', dept: 'Sales' },
+  {empId: 2, name: 'Dave', dept: 'Accounting' },
+  {empId: 3, name: 'Ava', dept: 'Sales' }
+]);
+
+db.employees.find({dept: 'Sales'});
+```
+
+In deze oefenomgeving is al een database gestart. Die is beschikbaar via de variabele db. Deze code maakt in de database een collection aan die *employees* heet - een beetje vergelijkbaar met een tabel in een relationele database - en stopt ook direct drie JSON documenten in deze collectie. Vervolgens wordt een query uitgevoerd tegen deze collectie en worden alle documenten opgevraagd waarin de waarde van *dept* gelijk is aan *Sales* 
+
+Druk op de knop *Run*. Onderaan de output zie je de twee documenten die voldoen aan de zoekvoorwaarde.
+
+Voeg deze regels toe
+```
+db.employees.insertOne({empId: 7, name: 'John', dept: 'IT' })
+db.employees.find({name: 'John'});
+```
+Druk op de knop *Run*. Onderaan de output zie je dat het net toegevoegd document wordt gevonden.
+
+Voeg deze regels toe en druk weer op *Run*
+```
+db.employees.count()
+db.employees.find()
+```
+Je ziet zowel het totaal aantal documenten als de lijst van alle documenten.
+
+Voeg deze regels toe
+```
+db.employees.insertOne({employeeIdentifier: "XX", voornaam: 'Jochem', afdeling: 'Marketing', hobby:'sportvissen' })
+db.employees.find()
+```
+
+Druk op *Run*. Je ziet nu iets dat in een relationele database absoluut niet zou werken: een document in de *employees* collectie met een afwijkende structuur. Kijk eens naar de namen van de properties! De NoSQL database kijkt alleen of er sprake is van een valide JSON document. En dat is het geval. De namen van properties en de waarden van properties zijn niet het probleem van de database.
+
+Open de site https://json-generator.com/ . Deze site kan een JSON document genereren. Genereer een  nieuw JSON document. Copy het document naar het clipboard.
+
+Terug in OneCompiler, voeg onderstaand fragment toe aan de code en vervang zoals aangegeven met de inhoud van het clipboard. 
+```
+db.employees.insertMany(
+  < insert hier de output van de JSON Generator>
+)
+db.employees.find({},{name:1})
+```
+Druk op *Run*. Ook deze data wordt moeiteloos in dezelfde collection in de database vastgelegd en we kunnen een query uitvoeren over alle documenten, ook al zijn ze onderling best verschillend. Omdat alle documenten een *name* property hebben kunnen we prima de waarde van dat property vinden voor alle documenten.
+
+Verwijderen van een document doe je in MongoDB met de *delete* functie op een collectie. Voeg deze regels toe:  
+
+```
+db.employees.count()
+db.employees.deleteMany([dept: 'Sales'])
+db.employees.count()
+```
+
+Begrijp je wat hier gebeurt? Weet je hoe je het document voor Jochem kan verwijderen?
 
 ## Query Documenten in MongoDB
 
