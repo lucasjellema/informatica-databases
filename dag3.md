@@ -24,7 +24,7 @@
 
 ## Data Analyse
 
-Weke boodschap is verborgen in deze file: [mysterieus plaatje](files/mysterieus-plaatje.png)?
+Welke boodschap is verborgen in deze file: [mysterieus plaatje](files/mysterieus-plaatje.png)?
 
 Tip: Je kunt QR Codes onderzoeken met je telefoon en met QR Code scanning tools. Scan bijvoorbeeld een QR Code uit een file die je uploadt naar: https://scanqr.org/
 
@@ -38,7 +38,7 @@ Een file heeft vaak een extensie - de laatste drie of vier letters, achter de pu
 
 De extensie is een hint - geen garantie. Een file kan een verkeerde extensie hebben (inhoud en extensie kloppen niet met elkaar) of zelfs geen extensie. 
 
-Welk dier zit verscholen in deze file: [uitzoeker.qqq](files/uitzoeker.qqq). Deze file bevat een plaatje in PNG formaat.
+Welk dier zit verscholen in deze file: [uitzoeker.qqq](files/uitzoeker.qqq). Deze file bevat een plaatje in PNG formaat. (PS:  bij inspectie van de file inhoud vind je de aanduiding JFIF.Je kunt deze op internet opzoeken en je krijgt de hint dat dit een JPEG formaat betreft; je kunt de file extensie aanpassen naar .jpg )
 
 Een iets ingewikkelder puzzel is file [Je kunt hier een dier mee vinden.xxx](files/Je-kunt-hier-een-dier-mee-vinden.xxx). 
 
