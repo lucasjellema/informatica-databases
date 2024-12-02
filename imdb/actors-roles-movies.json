@@ -1,0 +1,421 @@
+{
+    "actors": [
+        {
+            "FirstName": "Aeliana",
+            "LastName": "Stormrider",
+            "Nickname": "Ace",
+            "Relationshipstatus": "Married",
+            "Birthdate": "1990-03-15",
+            "Country": {
+                "Name": "Eldoria",
+                "Population": "56.3"
+            },
+            "Roles": [
+                {
+                    "Character": "Lyra Stormblade",
+                    "CharacterDescription": "The fearless heroine destined to defeat the dark forces threatening Eldoria.",
+                    "Movie": {
+                        "Title": "The Shadows of Eldoria",
+                        "Genre": "Fantasy"
+                    }
+                },
+                {
+                    "Character": "Cassian Emberheart",
+                    "CharacterDescription": "A fiery and passionate rebel leader fighting to bring freedom to the oppressed people of the Emberlands.",
+                    "Movie": {
+                        "Title": "The Last Ember",
+                        "Genre": "Action"
+                    }
+                },
+                {
+                    "Character": "Captain Joran Helix",
+                    "CharacterDescription": "A courageous starship captain who leads his crew through perilous space battles against a rogue AI.",
+                    "Movie": {
+                        "Title": "Solaris Ascendant",
+                        "Genre": "Science Fiction"
+                    }
+                }
+            ]
+        },
+        {
+            "FirstName": "Kael",
+            "LastName": "Sunstrike",
+            "Nickname": "The Flash",
+            "Relationshipstatus": "Single",
+            "Birthdate": "1985-07-24",
+            "Country": {
+                "Name": "Zephyria",
+                "Population": "78.9"
+            },
+            "Roles": [
+                {
+                    "Character": "Malik Shadowbane",
+                    "CharacterDescription": "An evil sorcerer who commands a dark army and seeks the ultimate power hidden in Eldoria.",
+                    "Movie": {
+                        "Title": "The Shadows of Eldoria",
+                        "Genre": "Fantasy"
+                    }
+                },
+                {
+                    "Character": "Ronan Solara",
+                    "CharacterDescription": "A rugged and battle-worn military commander sent to control the portal but with his own hidden agenda.",
+                    "Movie": {
+                        "Title": "Beyond the Horizon",
+                        "Genre": "Science Fiction"
+                    }
+                },
+                {
+                    "Character": "Dracula",
+                    "CharacterDescription": "an undead creature who feeds on the blood of the living to sustain his immortality possessing supernatural abilities such as shape-shifting control over animals and the power to hypnotize his victims.",
+                    "Movie": {
+                        "Title": "Steelheart's Revenge",
+                        "Genre": "Action"
+                    }
+                },
+                {
+                    "Character": "Liriel Stormcaller",
+                    "CharacterDescription": "A powerful mage with control over the weather struggling to control the eternal storm that threatens her people.",
+                    "Movie": {
+                        "Title": "The Eternal Storm",
+                        "Genre": "Fantasy"
+                    }
+                }
+            ]
+        },
+        {
+            "FirstName": "Lyra ",
+            "LastName": "Nightshade",
+            "Nickname": "Shadow",
+            "Relationshipstatus": "In a relationship",
+            "Birthdate": "1992-12-10",
+            "Country": {
+                "Name": "Ardoria",
+                "Population": "4.9"
+            },
+            "Roles": [
+                {
+                    "Character": "Kai Phoenix",
+                    "CharacterDescription": "A daring and quick-witted pilot with a love for adventure and an infamous reputation.",
+                    "Movie": {
+                        "Title": "Flight of the Phoenix",
+                        "Genre": "Adventure"
+                    }
+                },
+                {
+                    "Character": "Lira Flint",
+                    "CharacterDescription": "A hardened and pragmatic warrior who questions the ideals of the rebellion but remains loyal.",
+                    "Movie": {
+                        "Title": "The Last Ember",
+                        "Genre": "Action"
+                    }
+                }
+            ]
+        },
+        {
+            "FirstName": "Dorin",
+            "LastName": "Starseeker",
+            "Ni ckname": "Daredevil",
+            "Relationshipstatus": "Married",
+            "Birthdate": "1988-01-06",
+            "Country": {
+                "Name": "Lumora",
+                "Population": "67.8"
+            },
+            "Roles": [
+                {
+                    "Character": "Astra Skydancer",
+                    "CharacterDescription": "The enigmatic and rebellious co-pilot who has a mysterious connection to the protagonist.",
+                    "Movie": {
+                        "Title": "Flight of the Phoenix",
+                        "Genre": "Adventure"
+                    }
+                },
+                {
+                    "Character": "Agent Zara Cross",
+                    "CharacterDescription": "A highly skilled and no-nonsense field agent who plays by her own rules to stop a global conspiracy.",
+                    "Movie": {
+                        "Title": "Silent Horizon",
+                        "Genre": "Thriller "
+                    }
+                }
+            ]
+        },
+        {
+            "FirstName": "Zara",
+            "LastName": "Windwhisper",
+            "Nickname": "Zee",
+            "Relationshipstatus": "Single",
+            "Birthdate": "1995-09-18",
+            "Country": {
+                "Name": "Noveris",
+                "Population": "50.4"
+            },
+            "Roles": [
+                {
+                    "Character": "Detective Clara Black",
+                    "CharacterDescription": "A determined detective who always follows her gut instincts even into dangerous situations.",
+                    "Movie": {
+                        "Title": "Crimson Veil",
+                        "Genre": "Mystery"
+                    }
+                },
+                {
+                    "Character": "Isabelle Frost",
+                    "CharacterDescription": "A ghostly figure trapped in the mansion seeking help but also hiding her true nature.",
+                    "Movie": {
+                        "Title": "Whispers in the Dark",
+                        "Genre": "Horror"
+                    }
+                }
+            ]
+        },
+        {
+            "FirstName": "Talon",
+            "LastName": "Ironheart",
+            "Nickname": "Steel",
+            "Relationshipstatus": "Married",
+            "Birthdate": "1990-06-23",
+            "Country": {
+                "Name": "Terranova",
+                "Population": "33.9"
+            },
+            "Roles": [
+                {
+                    "Character": "Garrick Ironheart",
+                    "CharacterDescription": "A fierce warrior on a personal mission for revenge wielding a sword forged in the depths of Thandara.",
+                    "Movie": {
+                        "Title": "Steelheart's Revenge",
+                        "Genre": "Action"
+                    }
+                },
+                {
+                    "Character": "Elara Rivers",
+                    "CharacterDescription": "A local schoolteacher who helps Finn face his past and find redemption in the isolated village.",
+                    "Movie": {
+                        "Title": "Echoes of Tomorrow",
+                        "Genre": "Drama"
+                    }
+                }
+            ]
+        },
+        {
+            "FirstName": "Kara",
+            "LastName": "Firebrand",
+            "Nickname": "Fury",
+            "Relationshipstatus": "Married",
+            "Birthdate": "1984-04-11",
+            "Country": {
+                "Name": "Farlon",
+                "Population": "22.7"
+            },
+            "Roles": [
+                {
+                    "Character": "Serena Lightbringer",
+                    "CharacterDescription": "A noble mage who helps guide the young hero with her ancient wisdom.",
+                    "Movie": {
+                        "Title": "The Shadows of Eldoria",
+                        "Genre": "Fantasy"
+                    }
+                },
+                {
+                    "Character": "Dr.Alara Meridian",
+                    "CharacterDescription": "A brilliant scientist who discovers the dangerous potential of interdimensional travel.",
+                    "Movie": {
+                        "Title": "Beyond the Horizon",
+                        "Genre": "Science Fiction"
+                    }
+                },
+                {
+                    "Character": "Dracula",
+                    "CharacterDescription": "an undead creature who feeds on the blood of the living to sustain his immortality possessing supernatural abilities such as shape-shifting control over animals and the power to hypnotize his victims.",
+                    "Movie": {
+                        "Title": "Frozen Sun",
+                        "Genre": "Adventure"
+                    }
+                }
+            ]
+        },
+        {
+            "FirstName": "Eldrin",
+            "LastName": "Stormforge",
+            "Nickname": "Thunder",
+            "Relationshipstatus": "Single",
+            "Birthdate": "1991-11-02",
+            "Country": {
+                "Name": "Ardoria",
+                "Population": "4.9"
+            },
+            "Roles": [
+                {
+                    "Character": "Dracula",
+                    "CharacterDescription": "an undead creature who feeds on the blood of the living to sustain his immortality possessing supernatural abilities such as shape-shifting control over animals and the power to hypnotize his victims.",
+                    "Movie": {
+                        "Title": "Crimson Veil",
+                        "Genre": "Mystery"
+                    }
+                },
+                {
+                    "Character": "Silas Blackthorn",
+                    "CharacterDescription": "A rival explorer willing to go to any lengths even betrayal to claim the artifact for himself.",
+                    "Movie": {
+                        "Title": "Frozen Sun",
+                        "Genre": "Adventure"
+                    }
+                }
+            ]
+        },
+        {
+            "FirstName": "Rowan",
+            "LastName": "Frostblade ",
+            "Nickname": "Frost",
+            "Relationshipstatus": "In a relationship",
+            "Birthdate": "1989-05-14",
+            "Country": {
+                "Name": "Thandara",
+                "Population": "88.1"
+            },
+            "Roles": [
+                {
+                    "Character": "Thalia Shadowfox",
+                    "CharacterDescription": "A cunning and agile thief who aids Garrick but has her own reasons for joining the quest.",
+                    "Movie": {
+                        "Title": "Steelheart's Revenge",
+                        "Genre": "Action"
+                    }
+                },
+                {
+                    "Character": "Rowan Brightblade",
+                    "CharacterDescription": "A warrior cursed by the storm forced to protect the mage even as it consumes him.",
+                    "Movie": {
+                        "Title": "The Eternal Storm",
+                        "Genre": "Fantasy"
+                    }
+                }
+            ]
+        },
+        {
+            "FirstName": "Selene",
+            "LastName": "Shadowdancer ",
+            "Nickname": "Nightshade",
+            "Relationshipstatus": "Single",
+            "Birthdate": "1993-08-21",
+            "Country": {
+                "Name": "Velaris",
+                "Population ": "61.5"
+            },
+            "Roles": [
+                {
+                    "Character": "Kaelen Lightstorm",
+                    "CharacterDescription": "A brilliant but eccentric engineer who can fix anything but has a habit of speaking in riddles.",
+                    "Movie": {
+                        "Title": "Solaris Ascendant",
+                        "Genre": "Science Fiction"
+                    }
+                },
+                {
+                    "Character": "Eira Frostveil",
+                    "CharacterDescription": "An intrepid explorer who ventures into the frozen wilderness in search of the legendary artifact.",
+                    "Movie": {
+                        "Title": "Frozen Sun",
+                        "Genre": "Adventure"
+                    }
+                }
+            ]
+        },
+        {
+            "FirstName": "Jorin",
+            "LastName": "Brightstar",
+            "Nickname": "Star",
+            "Relationshipstatus": "In a relationship",
+            "Birthdate": "1987-02-08",
+            "Country": {
+                "Name": "Eldoria",
+                "Population": "56.3"
+            },
+            "Roles": [
+                {
+                    "Character": "Lucien Nightshade",
+                    "CharacterDescription": "A paranormal investigator who has a dark secret tied to the haunted mansion.",
+                    "Movie": {
+                        "Title": "Whispers in the Dark",
+                        "Genre": "Horror"
+                    }
+                },
+                {
+                    "Character": "Director Nolan Creed",
+                    "CharacterDescription": "A government official who is pulling the strings behind the scenes and has his own hidden agenda.",
+                    "Movie": {
+                        "Title": "Silent Horizon",
+                        "Genre": "Thriller"
+                    }
+                }
+            ]
+        },
+        {
+            "FirstName": "Tyrus",
+            "LastName": "Duskborn",
+            "Nickname": "Ty",
+            "Relationshipstatus": "In a relationship",
+            "Birthdate": "1990-09-13",
+            "Country": {
+                "Name": "Valoria",
+                "Population": "45.2"
+            },
+            "Roles": [
+                {
+                    "Character": "Finn Oaken",
+                    "CharacterDescription": "A troubled young man trying to reconnect with his estranged family in a remote cold village.",
+                    "Movie": {
+                        "Title": "Echoes of Tomorrow",
+                        "Genre": "Drama"
+                    }
+                }
+            ]
+        },
+        {
+            "FirstName": "Mira",
+            "LastName": "Stoneweaver ",
+            "Nickname": "Rocky",
+            "Relationshipstatus": "Single",
+            "Birthdate": "1985-10-30",
+            "Country": {
+                "Name": "Lumora",
+                "Population": "67.8"
+            },
+            "Roles": [
+                {
+                    "Character": "Agent Mark Reid",
+                    "CharacterDescription": "A clumsy confused agent who loses track almost anything.",
+                    "Movie": {
+                        "Title": "Silent Horizon",
+                        "Genre": "Thriller"
+                    }
+                }
+            ]
+        },
+        {
+            "FirstName": "Thalia",
+            "LastName": "Skylark",
+            "Nickname": "Lark",
+            "Relationshipstatus": "Married",
+            "Birthdate": "1994-12-28",
+            "Country": {
+                "Name": "Zephyria",
+                "Population": "78.9"
+            },
+            "Roles": []
+        },
+        {
+            "FirstName": "Xander",
+            "LastName": "Flamecaster",
+            "Nickname": "Blaze",
+            "Relationshipstatus": "Married ",
+            "Birthdate": "1986-07-02",
+            "Country": {
+                "Name": "Noveris",
+                "Population": "50.4"
+            },
+            "Roles": []
+        }
+    ]
+}

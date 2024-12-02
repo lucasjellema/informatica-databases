@@ -1,0 +1,346 @@
+{
+    "movies": [
+        {
+            "Title": "The Shadows of Eldoria",
+            "Genre": "Fantasy",
+            "Description": "A young hero must venture into the dark lands to save the kingdom of Eldoria from an ancient curse",
+            "Roles": [
+                {
+                    "Character": "Lyra Stormblade",
+                    "CharacterDescription": "The fearless heroine destined to defeat the dark forces threatening Eldoria.",
+                    "Actor": {
+                        "FirstName": "Aeliana",
+                        "LastName": "Stormrider",
+                        "Country": "Eldoria"
+                    }
+                },
+                {
+                    "Character": "Malik Shadowbane",
+                    "CharacterDescription": "An evil sorcerer who commands a dark army and seeks the ultimate power hidden in Eldoria.",
+                    "Actor": {
+                        "FirstName": "Kael",
+                        "LastName": "Sunstrike",
+                        "Country": "Zephyria"
+                    }
+                },
+                {
+                    "Character": "Serena Lightbringer",
+                    "CharacterDescription": "A noble mage who helps guide the young hero with her ancient wisdom.",
+                    "Actor": {
+                        "FirstName": "Kara",
+                        "LastName": "Firebrand",
+                        "Country": "Farlon"
+                    }
+                }
+            ]
+        },
+        {
+            "Title": "Flight of the Phoenix",
+            "Genre": "Adventure",
+            "Description": "A daring pilot embarks on a journey across dangerous skies to deliver a mysterious package",
+            "Roles": [
+                {
+                    "Character": "Kai Phoenix",
+                    "CharacterDescription": "A daring and quick-witted pilot with a love for adventure and an infamous reputation.",
+                    "Actor": {
+                        "FirstName": "Lyra",
+                        "LastName": "Nightshade",
+                        "Country": "Ardoria"
+                    }
+                },
+                {
+                    "Character": "Astra Skydancer",
+                    "CharacterDescription": "The enigmatic and rebellious co-pilot who has a mysterious connection to the protagon ist.",
+                    "Actor": {
+                        "FirstName": "Dorin",
+                        "LastName": "Starseeker",
+                        "Country": "Lumora"
+                    }
+                }
+            ]
+        },
+        {
+            "Title": "Crimson Veil",
+            "Genre": "Mystery",
+            "Description": "A detective unravels a web of lies and deceit in the small eerie town of Skyhold",
+            "Roles": [
+                {
+                    "Character": "Detective Clara Black",
+                    "CharacterDescription": "A determined detective who always follows her gut instincts even into dangerous situations.",
+                    "Actor": {
+                        "FirstName": "Zara",
+                        "LastName": "Windwhisper",
+                        "Country": "Noveris"
+                    }
+                },
+                {
+                    "Character": "Dracula",
+                    "CharacterDescription": "an undead creature who feeds on the blood of the living to sustain his immortality possessing supernatural abilities such as shape-shifting control over animals and the power to hypnotize his victims.",
+                    "Actor": {
+                        "FirstName": "Eldrin",
+                        "LastName": "Stormforge",
+                        "Country": "Ardoria"
+                    }
+                }
+            ]
+        },
+        {
+            "Title": "The Last Ember",
+            "Genre": "Action",
+            "Description": "In a world where fire is a rare commodity a group of rebels fight to reclaim the flame from a tyrannical regime",
+            "Roles": [
+                {
+                    "Character": "Cassian Emberheart",
+                    "CharacterDescription": "A fiery and passionate rebel leader fighting to bring freedom to the oppressed people of the Emberlands.",
+                    "Actor": {
+                        "FirstName": "Aeliana",
+                        "LastName": "Stormrider",
+                        "Country": "Eldoria"
+                    }
+                },
+                {
+                    "Character": "Lira Flint",
+                    "CharacterDescription": "A hardened and pragmatic warrior who questions the ideals of the rebellion but remains loyal.",
+                    "Actor": {
+                        "FirstName": "Lyra",
+                        "LastName": "Nightshade",
+                        "Country": "Ardoria"
+                    }
+                }
+            ]
+        },
+        {
+            "Title": "Beyond the Horizon",
+            "Genre": "Science Fiction",
+            "Description": "A scientist discovers a portal to another dimension but soon realizes the other side is far from welcoming",
+            "Roles": [
+                {
+                    "Character": "Dr. Alara Meridian",
+                    "CharacterDescription": "A brilliant scientist who discovers the dangerous potential of interdimensional  travel.",
+                    "Actor": {
+                        "FirstName": "Kara",
+                        "LastName": "Firebrand",
+                        "Country": "Farlon"
+                    }
+                },
+                {
+                    "Character": "Ronan Solara",
+                    "CharacterDescription": "A rugged and battle-worn military commander sent to control the portal but with his own hidden agenda.",
+                    "Actor": {
+                        "FirstName": "Kael",
+                        "LastName": "Sunstrike",
+                        "Country": "Zephyria"
+                    }
+                }
+            ]
+        },
+        {
+            "Title": "Stee lheart's Revenge",
+            "Genre": "Action",
+            "Description": "A legendary warrior seeks revenge against the invaders who destroyed his homeland",
+            "Roles": [
+                {
+                    "Character": "Garrick Ironheart",
+                    "CharacterDescription": "A fierce warrior on a personal mission for revenge wielding a sword forged in the depths of Thandara.",
+                    "Actor": {
+                        "FirstName": "Talon",
+                        "LastName": "Ironheart",
+                        "Cou ntry": "Terranova"
+                    }
+                },
+                {
+                    "Character": "Dracula",
+                    "CharacterDescription": "an undead creature who feeds on the blood of the living to sustain his immortality possessing supernatural abilities such as shape-shifting control over animals and the power to hypnotize his  victims.",
+                    "Actor": {
+                        "FirstName": "Kael",
+                        "LastName": "Sunstrike",
+                        "Country": "Zephyria"
+                    }
+                },
+                {
+                    "Character": "Thalia Shadowfox",
+                    "CharacterDescription": "A cunning and agile thief who aids Garrick but has her own reasons for joining the quest.",
+                    "Actor": {
+                        "FirstName": "Rowan",
+                        "LastName": "Frostblade",
+                        "Country": "Thandara"
+                    }
+                }
+            ]
+        },
+        {
+            "Title": "Whispers in the Dark",
+            "Genre": "Horror",
+            "Description": "A haunted mansion reveals its dark secrets as a group of friends venture into its depths",
+            "Roles": [
+                {
+                    "Character": "Lucien Nightshade",
+                    "CharacterDescription": "A paranormal investigator who has a dark secret tied to the haunted  mansion.",
+                    "Actor": {
+                        "FirstName": "Jorin",
+                        "LastName": "Brightstar",
+                        "Country": "Eldoria"
+                    }
+                },
+                {
+                    "Character": "Isabelle Frost",
+                    "CharacterDescription": "A ghostly figure trapped in the mansion seeking help but also hiding her true nature.",
+                    "Actor": {
+                        "FirstName": "Zara",
+                        "LastName": "Windwhisper",
+                        "Country": "Noveris"
+                    }
+                }
+            ]
+        },
+        {
+            "Title": "Solaris Ascendant",
+            "Genre": "Science Fiction",
+            "Description": "A crew aboard a space station must stop a rogue AI from controlling the galaxy's most powerful energy source",
+            "Roles": [
+                {
+                    "Character": "Captain Joran Helix",
+                    "CharacterDescription": "A courageous starship captain who leads his crew through perilous space battles against a rogue AI.",
+                    "Actor": {
+                        "FirstName": "Aeliana",
+                        "LastName": "Stormrider",
+                        "Country": "Eldoria"
+                    }
+                },
+                {
+                    "Character": "Kaelen Lightstorm",
+                    "CharacterDescription": "A brilliant but eccentric engineer who can fix anything but has a habit of speaking in  riddles.",
+                    "Actor": {
+                        "FirstName": "Selene",
+                        "LastName": "Shadowdancer",
+                        "Country": "Velaris"
+                    }
+                }
+            ]
+        },
+        {
+            "Title": "Echoes of Tomorrow",
+            "Genre": "Drama",
+            "Description": "An estranged family confronts their troubled past as they attempt to rebuild their lives in a remote village",
+            "Roles": [
+                {
+                    "Character": "Finn Oaken",
+                    "CharacterDescription": "A troubled young man trying to reconnect with his estranged family in a remote cold  village.",
+                    "Actor": {
+                        "FirstName": "Tyrus",
+                        "LastName": "Duskborn",
+                        "Country": "Valoria"
+                    }
+                },
+                {
+                    "Character": "Elara Rivers",
+                    "CharacterDescription": "A local schoolteacher who helps Finn face his past and find redemption in the isolated village.",
+                    "Actor": {
+                        "FirstName": "Talon",
+                        "LastName": "Ironheart",
+                        "Country": "Terranova"
+                    }
+                }
+            ]
+        },
+        {
+            "Title": "The Eternal Storm",
+            "Genre": "Fantasy",
+            "Description": "In a world where storms have personalities a mage must tame the fiercest storm to save her people",
+            "Roles": [
+                {
+                    "Character": "Liriel Stormcaller",
+                    "CharacterDescription": "A powerful mage with control over the weather struggling to control the eternal storm that threatens her  people.",
+                    "Actor": {
+                        "FirstName": "Kael",
+                        "LastName": "Sunstrike",
+                        "Country": "Zephyria"
+                    }
+                },
+                {
+                    "Character": "Rowan Brightblade",
+                    "CharacterDescription": "A warrior cursed by the storm forced to protect the mage even as it consumes him.",
+                    "Actor": {
+                        "FirstName": "Rowan",
+                        "LastName": "Frostblade",
+                        "Country": "Thandara"
+                    }
+                }
+            ]
+        },
+        {
+            "Title": "Silent Horizon",
+            "Genre": "Thriller",
+            "Description": "An elite team of agents must thwart a global conspiracy while racing against time",
+            "Roles": [
+                {
+                    "Character": "Agent Zara Cross",
+                    "CharacterDescription": "A highly skilled and no-nonsense field agent who plays by her own rules to stop a global  conspiracy.",
+                    "Actor": {
+                        "FirstName": "Dorin",
+                        "LastName": "Starseeker",
+                        "Country": "Lumora"
+                    }
+                },
+                {
+                    "Character": "Agent Mark Reid",
+                    "CharacterDescription": "A clumsy confused agent who loses track almost anything.",
+                    "Actor": {
+                        "FirstName": "Mira",
+                        "LastName": "Stoneweaver",
+                        "Country": "Lumora"
+                    }
+                },
+                {
+                    "Character": "Director Nolan Creed",
+                    "CharacterDescription": "A government official who is pulling the strings behind the scenes and has his own hidden agenda.",
+                    "Actor": {
+                        "FirstName": "Jorin",
+                        "LastName": "Brightstar",
+                        "Country": "Eldoria"
+                    }
+                }
+            ]
+        },
+        {
+            "Title": "Frozen Sun",
+            "Genre": "Adventure",
+            "Description": "An explorer sets out on an epic journey to the frozen poles of the planet Valoria searching for a legendary artifact",
+            "Roles": [
+                {
+                    "Character": "Eira Frostveil",
+                    "CharacterDescription": "An intrepid explorer who ventures into the frozen wilderness in search of the legendary  artifact.",
+                    "Actor": {
+                        "FirstName": "Selene",
+                        "LastName": "Shadowdancer",
+                        "Country": "Velaris"
+                    }
+                },
+                {
+                    "Character": "Silas Blackthorn",
+                    "CharacterDescription": "A rival explorer willing to go to any lengths even betrayal to claim the artifact for himself.",
+                    "Actor": {
+                        "FirstName": "Eldrin",
+                        "LastName": "Stormforge",
+                        "Country": "Ardoria"
+                    }
+                },
+                {
+                    "Character": "Dracula",
+                    "Charac terDescription": "an undead creature who feeds on the blood of the living to sustain his immortality possessing supernatural abilities such as shape-shifting control over animals and the power to hypnotize his victims.",
+                    "Actor": {
+                        "FirstName": "Kara",
+                        "LastName": "Firebrand",
+                        "Country": "Farlon"
+                    }
+                }
+            ]
+        },
+        {
+            "Title": "Stoneheart",
+            "Genre": "Drama",
+            "Descr iption": "A sculptor finds inspiration in his dreams but the line between imagination and reality begins to blur",
+            "Roles": []
+        }
+    ]
+}

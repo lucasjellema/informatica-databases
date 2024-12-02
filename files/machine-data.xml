@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<GrandPrix>
+    <datum>2024-11-24</datum>
+    <locatie>Las Vegas</locatie>
+    <winnaars>
+        <positie>1</positie>
+        <naam>George Russell</naam>
+        <team>Mercedes</team>
+        <nationaliteit>UK</nationaliteit>
+    </winnaars>
+    <winnaars>
+        <positie>2</positie>
+        <naam>Lewis Hamilton</naam>
+        <team>Mercedes</team>
+        <nationaliteit>UK</nationaliteit>
+    </winnaars>
+    <winnaars>
+        <positie>3</positie>
+        <naam>Carlos Sainz</naam>
+        <team>Ferrari</team>
+        <nationaliteit>ESP</nationaliteit>
+    </winnaars>
+</GrandPrix>
+<GrandPrix>
+    <datum>2024-10-31</datum>
+    <locatie>Sao Paolo</locatie>
+    <winnaars>
+        <positie>1</positie>
+        <naam>Max Verstappen</naam>
+        <team>RedBull</team>
+        <nationaliteit>NED</nationaliteit>
+    </winnaars>
+    <winnaars>
+        <positie>2</positie>
+        <naam>Esteban Ocon</naam>
+        <team>Alpine</team>
+        <nationaliteit>FRA</nationaliteit>
+    </winnaars>
+    <winnaars>
+        <positie>3</positie>
+        <naam>Pierre Gasly</naam>
+        <team>Alpine</team>
+        <nationaliteit>FRA</nationaliteit>
+    </winnaars>
+</GrandPrix>

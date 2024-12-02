@@ -1,0 +1,52 @@
+{
+    "GrandPrix": [
+        {
+            "datum": "2024-11-24",
+            "locatie": "Las Vegas",
+            "winnaars": [
+                {
+                    "positie": 1,
+                    "naam": "George Russell",
+                    "team": "Mercedes",
+                    "nationaliteit": "UK"
+                },
+                {
+                    "positie": 2,
+                    "naam": "Lewis Hamilton",
+                    "team": "Mercedes",
+                    "nationaliteit": "UK"
+                },
+                {
+                    "positie": 3,
+                    "naam": "Carlos Sainz",
+                    "team": "Ferrari",
+                    "nationaliteit": "ESP"
+                }
+            ]
+        },
+        {
+            "datum": "2024-10-31",
+            "locatie": "Sao Paolo",
+            "winnaars": [
+                {
+                    "positie": 1,
+                    "naam": "Max Verstappen",
+                    "team": "RedBull",
+                    "nationaliteit": "NED"
+                },
+                {
+                    "positie": 2,
+                    "naam": "Esteban Ocon",
+                    "team": "Alpine",
+                    "nationaliteit": "FRA"
+                },
+                {
+                    "positie": 3,
+                    "naam": "Pierre Gasly",
+                    "team": "Alpine",
+                    "nationaliteit": "FRA"
+                }
+            ]
+        }
+    ]
+}

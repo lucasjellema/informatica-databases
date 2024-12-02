@@ -9,6 +9,7 @@
   - [Query Documenten in MongoDB](#query-documenten-in-mongodb)
     - [Onderzoek Survey Results met MongoDB](#onderzoek-survey-results-met-mongodb)
   - [Vergelijk SQL en NoSQL](#vergelijk-sql-en-nosql)
+    - [Achtergrond bij het maken van JSON documenten met SQL](#achtergrond-bij-het-maken-van-json-documenten-met-sql)
 
 
 
@@ -248,9 +249,260 @@ db.survey.aggregate([
 
 ## Vergelijk SQL en NoSQL
 
+De data van de IMDb (films, rollen, acteurs en landen) hebben we eerder in DuckDB gebruikt. Deze data werd vanuit comma separated values files geladen in tabellen waar we met SQL onze zoekvragen aan konden stellen. 
+
+Diezelfde data in JSON formaat worden beschreven en vervolgens in een NoSQL database zoals MongoDB worden geladen. Er is wel een verschil: JSON data is hierarchisch georganiseerd, van boven naar beneden. Is films ons vertrekpunt? Of zijn acteurs dat? Of zelfs landen? Afhankelijk van de keuze die we maken ziet het JSON document er anders uit. En kunnen we er andere vragen mee beantwoorden. 
+
+Bekijk de inhoud van file [imdb/movies-roles-actors.json](imdb/movies-roles-actors.json). Deze file bevat de data van de IMDb die je bekend voorkomt. Kijk hoe de data is georganiseerd. En bedenk welk soort vraag met deze organisatie goed kan worden beantwoord. En welk soort vraag een stuk minder makkelijk. 
+
+Laten we dat gaan uitvinden. 
+
+Open de link https://onecompiler.com/mongodb. De site opent met een code editor. 
+
+Vervang de code die in de editor staat met deze code:
+
+```
+const m = <vervang met JSON document>
+
+db.movies.insertMany(m.movies)
+
+print("Totaal aantal films")
+db.movies.count()
+
+print("Alle films in het genre Drama")
+db.movies.find({Genre:"Drama"},{Title:1})
+```
+
+Plak de inhoud van file [imdb/movies-roles-actors.json](imdb/movies-roles-actors.json) op de aangegeven plek. 
+
+Je kunt nu op *Run* klikken. 
+
+Stel dat je de titels zou willen zien van alle films waarin een acteur speelt die afkomstig is uit het land Eldoria, dan kan je daarvoor deze zoekopdracht gebruiken:
+
+```
+print("titels van alle films waarin een acteur speelt die afkomstig is uit het land Eldoria")
+db.movies.aggregate([
+  {
+    $unwind: "$Roles" // Unwind the 'Roles' array within each movie
+  },
+  {
+    $match: {
+      "Roles.Actor.Country": "Eldoria" // Filter roles with actors from "Eldoria"
+    }
+  },
+  {
+    $group: {
+      _id: "$Title" // Group by movie title to ensure unique titles
+    }
+  },
+  {
+    $project: {
+      _id: 0,
+      Title: "$_id" // Rename _id to Title for cleaner output
+    }
+  }
+]);
+```
+
+Plak deze onder de code die al in de OneCompiler code editor staat en druk opnieuw op *Run*
+
+Deze manier van zoekvragen stellen kost wel enige tijd om onder de knie te krijgen. Het is heel anders dan SQL. 
+
+Probeer de vorige zoekvraag aan te passen zodat je alle films krijgt met een acteur die als voornaam "Selene" heeft. Zijn er eigenlijk meerdere acteurs met die voornaam? Of komt dezelfde acteur meerdere keren voor in het JSON document? 
+
+Als het JSON document anders is opgebouwd, zien de zoekvragen er ook anders uit. En zijn sommige vragen veel eenvoudiger te beantwoorden. Een andere opbouw zou kunnen beginnen bij acteurs en van daar de rollen en films als details toevoegen. De movie-details en country worden dan voor iedere acteur in de film herhaald, dat is een nadeel. Bekijk het document [imdb/actors-roles-movies.json](imdb/actors-roles-movies.json). Laten we de data in dit document in de MongoDB database plaatsen.
+
+In OneCompiler (open de link https://onecompiler.com/mongodb als je deze niet meer hebt openstaan), vervang de code die in de editor staat met deze code:
+
+```
+const a = <vervang met JSON document actors-roles-movies.json>
+
+db.acteurs.insertMany(a.actors)
+
+print("Totaal aantal acteurs")
+db.acteurs.count()
+
+print("Alle acteurs met voornaam Selene")
+db.acteurs.find({FirstName:"Selene"})
+```
+
+Plak de inhoud van file [imdb/movies-roles-actors.json](imdb/movies-roles-actors.json) op de aangegeven plek. 
+
+Je kunt nu op *Run* klikken. 
+
+
+
+Voeg dan de filter-voorwaarde toe in een where-clause:
+
+Deze SQL query geeft de namen van de acteurs en de naam van hun character voor rollen waar de naam van het karakter begint met "Agent"
+
+```
+select a."first name"||' '|| a."last name" as "actor"
+,      r.character
+from   imdb_roles r
+       join 
+       imdb_actors a
+       on r.ActorId = a.identifier
+where  r.character like 'Agent%'
+;
+```
+
+Met JSON data en de MongoDB manier van zoeken wordt de zoekvraag:
+
+```
+print("namen van de acteurs en de naam van hun character voor rollen waar de naam van het karakter begint met "Agent"")
+db.acteurs.aggregate([
+  {
+    $unwind: "$Roles" // Zorg dat je alle rollen per acteur kunt bekijken
+  },
+  {
+    $match: {
+      "Roles.Character": { $regex: "^Agent", $options: "i" } // Filter op Rollen waarvan Character begint met 'Agent'
+    }
+  },
+  {
+    $project: {
+      _id: 0, // Verberg de standaard `_id`
+      FirstName: 1, // Toon de voornaam van de acteur
+      LastName: 1, // Toon de achternaam van de acteur
+      Character: "$Roles.Character" // Toon de naam van het karakter
+    }
+  }
+]);
+```
+Uitleg van de Query"
+`$unwind: "$Roles"`: Hiermee wordt het array-veld Roles uit elkaar gehaald, zodat elke rol apart wordt behandeld.
+`$match`: Filtert alleen de documenten waar Roles.Character begint met "Agent". De ^ geeft aan dat de match vanaf het begin van de string moet gebeuren en de optie i maakt het hoofdletterongevoelig.
+`$project`: Selecteert de velden die je wilt opnemen in het resultaat:
+FirstName en LastName: De naam van de acteur.
+Character: De naam van het karakter uit Roles.Character.
+_id: 0: Zorgt ervoor dat het standaard _id-veld niet in het resultaat staat.
+
+In SQL de films met de jongste acteurs de gegevens op volgorde van birthdate van de acteur en maximaal vijf records:
+
+```
+select a."first name"||' '|| a."last name" as "actor"
+,      m.title as movie
+,      r.character
+,      a."birth date"
+from   imdb_movies m 
+       join
+       imdb_roles r
+       on m.identifier = r.MovieId
+       join 
+       imdb_actors a
+       on r.ActorId = a.identifier
+order  
+by     a."birth date" desc
+limit  5
+;
+```
+
+In MongoDB:
+
+```
+db.acteurs.aggregate([
+  {
+    $addFields: {
+      BirthdateParsed: { $dateFromString: { dateString: "$Birthdate", format: "%Y-%m-%d" } } // voeg een tijdelijk veld toe
+    }
+  },
+  {
+    $unwind: "$Roles" // Maak van elke rol een apart document
+  },
+  {
+    $sort: { BirthdateParsed: -1 } // Sorteer op geboortedatum van acteur die de rol speelt, jongste eerst
+  },
+  {
+    $limit: 5 // Beperk tot vijf eerste rijen
+  },
+  {
+    $project: {
+      _id: 0,
+      ActorName: { $concat: ["$FirstName", " ", "$LastName"] }, // Combineer voornaam en achternaam
+      Character: "$Roles.Character", // Naam van het karakter
+      MovieTitle: "$Roles.Movie.Title", // Titel van de film
+      Birthdate: "$Birthdate" // Geboortedatum van de acteur
+    }
+  }
+]);
+```
+
+
+
 IMDb in MongoDB
+Mijn dialoog met ChatGPT om van de IMDb data in CSV format een JSON document te maken:
+https://chatgpt.com/share/674c2d18-bcc4-8005-90bb-e972b74ab7d9
 
 
 
 
+### Achtergrond bij het maken van JSON documenten met SQL
+
+Dit is het SQL statement waarmee in DuckDB vanuit de IMDb tabellen een JSON document kan worden gecreëerd met de films als top level objecten en rollen met acteurs als details:
+
+```
+WITH roles_with_actors AS (
+    SELECT  r.movieid,
+        json_group_array(json('{
+            "Character": ' || '"'||r.character||'"' || ',
+             "CharacterDescription": ' || '"'||r.characterdescription||'"' || ',
+            "Actor": {
+                "FirstName": ' || '"'||a."First Name"||'"' || ',
+                "LastName": ' || '"'||a."Last Name"||'"' || ',
+                "Country": ' || '"'||c.name||'"' || '
+            }
+        }')) AS roles
+    FROM imdb_roles r
+    JOIN imdb_actors a ON r.actorid = a.identifier
+    JOIN imdb_countries c ON a."Country Reference" = c.identifier
+    GROUP BY r.movieid
+)
+SELECT json_group_array(json('{
+    "MovieId": ' || m.identifier || ',
+    "Title": ' || '"'||m.title||'"' || ',
+    "Genre": ' || '"'||m.genre||'"' || ',
+    "Description": ' || '"'||m.description||'"' || ',
+    "Roles": ' || COALESCE(rwa.roles, '[]') || '
+    }')) AS movies_json
+FROM imdb_movies m
+LEFT JOIN roles_with_actors rwa ON m.identifier = rwa.movieid;
+``` 
+
+En dit is het DuckDB SQL statement waarmeevanuit de IMDb tabellen een JSON document kan worden gecreëerd met de acteurs als top level objecten en rollen in films als details:
+
+```
+WITH roles_in_movies AS (
+    SELECT  r.actorid,
+        json_group_array(json('{
+            "Character": ' || '"'||r.character||'"' || ',
+             "CharacterDescription": ' || '"'||r.characterdescription||'"' || ',
+            "Movie": {
+                "Title": ' || '"'||m.title||'"' || ',
+                "Genre": ' || '"'||m.genre||'"' || '
+            }
+        }')) AS roles
+    FROM imdb_roles r
+    JOIN imdb_movies m ON r.movieid = m.identifier
+    GROUP BY r.actorid
+)
+SELECT json_group_array(json('{
+    "Id": ' || a.identifier || ',
+    "FirstName": ' || '"'||a."First Name"||'"' || ',
+    "LastName": ' || '"'||a."Last Name"||'"' || ',
+    "Nickname": ' || '"'||a."Nick Name"||'"' || ',
+    "Relationshipstatus": ' || '"'||a."Relationship Status"||'"' || ',
+    "Birthdate": ' || '"'||a."birth date"||'"' || ',
+    "Country": ' ||
+         json('{ '||
+           '"Name": "'||c.name||'" ,' || 
+           '"Population": "'||c."Population (millions)"||'"' || 
+           '}')||',
+    "Roles": ' || COALESCE(rim.roles, '[]') || '
+    }')) AS actors_json
+FROM imdb_actors a
+LEFT JOIN roles_in_movies rim ON a.identifier = rim.actorid
+left join imdb_countries c on a."country reference" = c.identifier
+;
+``` 
 
