@@ -1,0 +1,162 @@
+[
+    {
+        "name": "Germany",
+        "capital": "Berlin",
+        "surfaceArea": 357022,
+        "population": 83900000,
+        "landlocked": false,
+        "continent": "Europe"
+    },
+    {
+        "name": "France",
+        "capital": "Paris",
+        "surfaceArea": 551695,
+        "population": 65480000,
+        "landlocked": false,
+        "continent": "Europe"
+    },
+    {
+        "name": "Switzerland",
+        "capital": "Bern",
+        "surfaceArea": 41285,
+        "population": 8900000,
+        "landlocked": true,
+        "continent": "Europe"
+    },
+    {
+        "name": "Italy",
+        "capital": "Rome",
+        "surfaceArea": 301340,
+        "population": 59000000,
+        "landlocked": false,
+        "continent": "Europe"
+    },
+    {
+        "name": "Austria",
+        "capital": "Vienna",
+        "surfaceArea": 83879,
+        "population": 9000000,
+        "landlocked": true,
+        "continent": "Europe"
+    },
+    {
+        "name": "Spain",
+        "capital": "Madrid",
+        "surfaceArea": 505992,
+        "population": 47430000,
+        "landlocked": false,
+        "continent": "Europe"
+    },
+    {
+        "name": "Belgium",
+        "capital": "Brussels",
+        "surfaceArea": 30528,
+        "population": 11580000,
+        "landlocked": false,
+        "continent": "Europe"
+    },
+    {
+        "name": "Norway",
+        "capital": "Oslo",
+        "surfaceArea": 385207,
+        "population": 5400000,
+        "landlocked": false,
+        "continent": "Europe"
+    },
+    {
+        "name": "Czech Republic",
+        "capital": "Prague",
+        "surfaceArea": 78867,
+        "population": 10700000,
+        "landlocked": true,
+        "continent": "Europe"
+    },
+    {
+        "name": "Hungary",
+        "capital": "Budapest",
+        "surfaceArea": 93030,
+        "population": 9700000,
+        "landlocked": true,
+        "continent": "Europe"
+    },
+    {
+        "name": "Nigeria",
+        "capital": "Abuja",
+        "surfaceArea": 923768,
+        "population": 211400000,
+        "landlocked": false,
+        "continent": "Africa"
+    },
+    {
+        "name": "South Africa",
+        "capital": "Pretoria",
+        "surfaceArea": 1219090,
+        "population": 59308690,
+        "landlocked": false,
+        "continent": "Africa"
+    },
+    {
+        "name": "Kenya",
+        "capital": "Nairobi",
+        "surfaceArea": 580367,
+        "population": 53771000,
+        "landlocked": false,
+        "continent": "Africa"
+    },
+    {
+        "name": "Ethiopia",
+        "capital": "Addis Ababa",
+        "surfaceArea": 1104300,
+        "population": 117000000,
+        "landlocked": true,
+        "continent": "Africa"
+    },
+    {
+        "name": "Uganda",
+        "capital": "Kampala",
+        "surfaceArea": 241038,
+        "population": 45741000,
+        "landlocked": true,
+        "continent": "Africa"
+    },
+    {
+        "name": "Ghana",
+        "capital": "Accra",
+        "surfaceArea": 238533,
+        "population": 31900000,
+        "landlocked": false,
+        "continent": "Africa"
+    },
+    {
+        "name": "Botswana",
+        "capital": "Gaborone",
+        "surfaceArea": 581730,
+        "population": 2400000,
+        "landlocked": true,
+        "continent": "Africa"
+    },
+    {
+        "name": "Rwanda",
+        "capital": "Kigali",
+        "surfaceArea": 26338,
+        "population": 13300000,
+        "landlocked": true,
+        "continent": "Africa"
+    },
+    {
+        "name": "Algeria",
+        "capital": "Algiers",
+        "surfaceArea": 2381741,
+        "population": 44700000,
+        "landlocked": false,
+        "continent": "Africa"
+    },
+    {
+        "name": "Morocco",
+        "capital": "Rabat",
+        "surfaceArea": 446550,
+        "population": 37410000,
+        "landlocked": false,
+        "continent": "Africa"
+    }
+]

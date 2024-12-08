@@ -4,11 +4,15 @@
   - [JSON](#json)
     - [JSON in Web Applicaties](#json-in-web-applicaties)
     - [Simpel JSON](#simpel-json)
+  - [Zoek in Ziggo Go](#zoek-in-ziggo-go)
     - [JSON communicatie achter Reisplanner](#json-communicatie-achter-reisplanner)
   - [Introductie NoSQL Database MongoDB](#introductie-nosql-database-mongodb)
   - [Query Documenten in MongoDB](#query-documenten-in-mongodb)
-    - [Onderzoek Survey Results met MongoDB](#onderzoek-survey-results-met-mongodb)
+    - [Verken landendata](#verken-landendata)
+    - [Onderzoek Woon-School Survey Results met MongoDB](#onderzoek-woon-school-survey-results-met-mongodb)
   - [Vergelijk SQL en NoSQL](#vergelijk-sql-en-nosql)
+- [Appendix](#appendix)
+  - [Hoe krijg je de IMDb data in MongoDB](#hoe-krijg-je-de-imdb-data-in-mongodb)
     - [Achtergrond bij het maken van JSON documenten met SQL](#achtergrond-bij-het-maken-van-json-documenten-met-sql)
 
 
@@ -68,6 +72,35 @@ Tip: voeg eerst een extra property toe aan het employee record voor John William
 Druk op *Format / Beautify* en zie deze nodes in de tree verschijnen.
 
 Je kunt alle beoordelingen van alle employees bekijken met: `@.employees.employee[*].beoordelingen`
+
+
+## Zoek in Ziggo Go
+Hieronder zie je de televisieagenda van Ziggo voor dinsdag 10 december,
+![alt text](files/ziggo-tv-dinsdag-10-december.png)
+
+Wat je ziet in het screenshot is door de app opgebouwd uit een JSON document: [ziggo-dinsdag.json](files/ziggo-dinsdag.json)
+
+Plak de inhoud van deze file in https://jsonformatter.org/. Bestudeer de structuur. Hoe is dit document opgebouwd? Bekijk het document bijvoorbeeld in tree view. Je ziet dan 169 entries. Wat zouden dat zijn? Als je kijkt naar de properties van iedere entry, krijg je dan een idee? 
+
+Onder iedere entry staat een verzameling die *events* heet. Bekijk een event. Wat denk je dat een event is?
+
+Met de filter expressie `@.entries[*].events[*].title` krijg je een lijst van alle titels van programma's.
+
+Zoek de leeftijdscategorie van het programma *Phineas en Ferb* dat om 10 uur door Veronica wordt uitgezonden, met deze filter expressie:
+```
+@.entries[*].events[?title=='Phineas en Ferb'][]
+```
+
+Begrijp je trouwens de waarde van het property *startTime*? (1733845200) voor dit programma?
+
+Kan je achterhalen hoeveel programma's er worden uitgezonden met een naam waarin *journaal* voorkomt?
+En hoeveel verschillende soorten journaal er zijn ? 
+
+```
+@.entries[*].events[?contains(title, 'ournaal')][]
+```
+
+NB: de J heb ik weggelaten omdat er zowel programmas's zijn met Journaal en met journaal. 
 
 
 ### JSON communicatie achter Reisplanner
@@ -169,6 +202,20 @@ db.employees.find({},{name:1})
 ```
 Druk op *Run*. Ook deze data wordt moeiteloos in dezelfde collection in de database vastgelegd en we kunnen een query uitvoeren over alle documenten, ook al zijn ze onderling best verschillend. Omdat alle documenten een *name* property hebben kunnen we prima de waarde van dat property vinden voor alle documenten.
 
+Geef alle employees een salaris van 7500 en check of dat gelukt is door deze twee regels toe te voegen en opnieuw de code uit te voeren:
+```
+db.employees.updateMany({}, {$set:{salary:7500}})
+db.employees.find()
+```
+
+Geef iedereen die ouder is dan 45 een salarisverhoging naar 9000:
+```
+db.employees.updateMany({ "age": { $gt: 45 } }, {$set:{salary:9000}})
+db.employees.find()
+```
+
+Hoeveel employees hebben een salarisverhoging gekregen? Pech voor de eerste vier employees waarvoor helemaal geen *age* is vastgelegd. 
+
 Verwijderen van een document doe je in MongoDB met de *delete* functie op een collectie. Voeg deze regels toe:  
 
 ```
@@ -181,10 +228,61 @@ Begrijp je wat hier gebeurt? Weet je hoe je het document voor Jochem kan verwijd
 
 ## Query Documenten in MongoDB
 
-Vind informatie met verschillende, enigszins ingewikkelde queries
+Vind informatie met verschillende, enigszins ingewikkelde queries. Hier is [de documentatie van MongoDB over query](https://www.mongodb.com/docs/manual/tutorial/query-documents/).
+
+### Verken landendata
+
+Het document [countries.json](files/countries.json) is gecreëerd door ChatGPT. Het bevat gegevens van 20 landen, 10 uit Europa en 10 uit Afrika. Je kan de gegevens van deze landen analyseren met behulp van MongoDB. De eerste stap daarvoor is het laden van de data als collection in MongoDB.
+
+Open de link https://onecompiler.com/mongodb opnieuw. Vervang de inhoud van het text kader met:
+
+```
+const c= <vervang met de data in de file met JSON data van countries> 
+db.countries.insertMany(c  )
+db.survey.find()
+```
+
+Als je deze code uitvoert zou je alle 20 landen in volle glorie moeten zien.
+
+Voeg de volgende code toe en druk opnieuw op *Run*:
+```
+db.countries.find(
+  {$or: [
+          {population: {$gt:80000000}} 
+         ,{surfaceArea:{$gt:500000}} 
+        ]}
+  , {_id:0, name:1, population:1, surfaceArea:1}
+)
+```
+
+Deze actie toont de naam, bevolkingsomvang en oppervlakte van alle landen die voldoen aan één of beide van twee voorwaarden: de bevolking is groter dan 80 miljoen of de oppervlakte is groter dan 500.000 km2.
+
+Toon alleen landen die *landlocked* zijn. 
+
+Pas de query aan zodat juist landen met een kleine bevolkingsomvang worden getoond. Hint: *$lt*.
+
+Pas de query aan zodat alleen landen in Afrika worden getoond.
+
+De volgende code resulteert in de gemiddelde bevolkingsomvang van de landen per continent:
+```
+db.countries.aggregate([
+    {
+        $group: {
+            _id: "$continent", // Group by continent
+            averagePopulation: { $avg: "$population" } 
+        }
+    },
+    {
+        $sort: { averagePopulation: -1 } // Optional: Sort by average population in descending order
+    }
+]);
+```
+Voeg deze code toe en druk op *Run*.
+
+Pas de query aan om de minimale bevolkingsomvang te tonen. En zowel de kleinste, grootste en de gemiddelde bevolkingsomvang. 
 
 
-### Onderzoek Survey Results met MongoDB
+### Onderzoek Woon-School Survey Results met MongoDB
 
 Open de link https://onecompiler.com/mongodb opnieuw. Vervang de inhoud van het text kader met:
 
@@ -245,6 +343,12 @@ db.survey.aggregate([
 ]);
 ```
 
+Bonus: als je interesse hebt hoe de MongoDB database engine besluit om een zoek-operatie uit te voeren kan je achter het statement de string `.explain("executionStats")` zetten. In plaats van de echte zoekresultaten krijg je dan een overzicht van het plan om de zoekoperatie uit te voeren. Als je indexen zou definiëren in je database zou je hier te zien krijgen of de database de indexen gebruikt en wat voor voordeel dat oplevert.
+
+Een voorbeeld:
+```
+db.survey.find({Woonplaats:"Soest"},{Reistijd:1, Vervoermiddel:1, Reisafstand:1}).sort({Reisafstand:-1}).limit(3).explain("executionStats")
+```
 
 
 ## Vergelijk SQL en NoSQL
@@ -277,7 +381,21 @@ Plak de inhoud van file [imdb/movies-roles-actors.json](imdb/movies-roles-actors
 
 Je kunt nu op *Run* klikken. 
 
-Stel dat je de titels zou willen zien van alle films waarin een acteur speelt die afkomstig is uit het land Eldoria, dan kan je daarvoor deze zoekopdracht gebruiken:
+Hoe zou `db.movies.count()` er in SQL uitzien?
+
+Zoiets als `select count(*) from imdb_movies`.
+
+En `db.movies.find({Genre:"Drama"},{Title:1})` komt min of meer overeen met:
+
+```
+select m.title
+from   imdb_movies m
+where  m.genre = 'Drama'
+```
+
+Wat vind je makkelijker om te lezen? En om zelf te bedenken.
+
+Stel dat je de titels zou willen zien van alle films waarin een acteur speelt die afkomstig is uit het land Eldoria, dan kan je daarvoor deze zoekopdracht gebruiken ni MongoDB:
 
 ```
 print("titels van alle films waarin een acteur speelt die afkomstig is uit het land Eldoria")
@@ -306,7 +424,24 @@ db.movies.aggregate([
 
 Plak deze onder de code die al in de OneCompiler code editor staat en druk opnieuw op *Run*
 
-Deze manier van zoekvragen stellen kost wel enige tijd om onder de knie te krijgen. Het is heel anders dan SQL. 
+Deze manier van zoekvragen stellen kost wel enige tijd om onder de knie te krijgen. Het is heel anders dan hoe je dat doet in SQL. 
+
+```
+select distinct m.title as "movie title"  // met distinct zorgen we ervoor dat we iedere filmtitel niet meer dan één keer te zien krijgen
+from   imdb_countries c
+       join 
+       imdb_actors a
+       on a."country reference" = c.identifier       
+       join
+       imdb_roles r
+       on r.ActorId = a.identifier
+       join 
+       imdb_movies m 
+       on m.identifier = r.MovieId
+where  c.name  = 'Eldoria'       // het land van de acteur die een rol speelt in de film
+;
+```  
+
 
 Probeer de vorige zoekvraag aan te passen zodat je alle films krijgt met een acteur die als voornaam "Selene" heeft. Zijn er eigenlijk meerdere acteurs met die voornaam? Of komt dezelfde acteur meerdere keren voor in het JSON document? 
 
@@ -331,9 +466,6 @@ Plak de inhoud van file [imdb/movies-roles-actors.json](imdb/movies-roles-actors
 Je kunt nu op *Run* klikken. 
 
 
-
-Voeg dan de filter-voorwaarde toe in een where-clause:
-
 Deze SQL query geeft de namen van de acteurs en de naam van hun character voor rollen waar de naam van het karakter begint met "Agent"
 
 ```
@@ -357,7 +489,7 @@ db.acteurs.aggregate([
   },
   {
     $match: {
-      "Roles.Character": { $regex: "^Agent", $options: "i" } // Filter op Rollen waarvan Character begint met 'Agent'
+      "Roles.Character": { $regex: "^Agent", $options: "i" } // Filter (met een regular expression) op Rollen waarvan Character begint met 'Agent' 
     }
   },
   {
@@ -377,6 +509,8 @@ Uitleg van de Query"
 FirstName en LastName: De naam van de acteur.
 Character: De naam van het karakter uit Roles.Character.
 _id: 0: Zorgt ervoor dat het standaard _id-veld niet in het resultaat staat.
+
+Pas deze zoekvraag aan zodat je de namen van de acteurs krijgt en de film titels krijgt van de films waarin ze hebben gespeeld in het genre *Adventure*  
 
 In SQL de films met de jongste acteurs de gegevens op volgorde van birthdate van de acteur en maximaal vijf records:
 
@@ -427,14 +561,14 @@ db.acteurs.aggregate([
   }
 ]);
 ```
+Kan je deze zoekvraag aanpassen zodat je oudste vijf acteurs kriigt? En zodat je alleen acteurs krijgt uit  
 
+# Appendix
 
+## Hoe krijg je de IMDb data in MongoDB
 
-IMDb in MongoDB
 Mijn dialoog met ChatGPT om van de IMDb data in CSV format een JSON document te maken:
 https://chatgpt.com/share/674c2d18-bcc4-8005-90bb-e972b74ab7d9
-
-
 
 
 ### Achtergrond bij het maken van JSON documenten met SQL
