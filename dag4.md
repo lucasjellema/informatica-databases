@@ -25,7 +25,7 @@ Kennismaken met data in JSON formaat. Een formaat dat je op heel veel plekken te
 
 In veel web applicaties speelt JSON een belangrijke rol. Data wordt vaak in JSON formaat gedefinieerd in de web applicatie of in JSON format door de web applicatie uit een server (via een API) opgevraagd.
 
-Voor een simpel voorbeeld, kijk naar file `dieren-app.html`. Open de file in je browser. Je ziet een lijstje dieren op een web pagina. Als je de inhoud van de file bekijkt dan zie je de definitie van het JSON data object met dier definities.
+Voor een simpel voorbeeld, kijk naar file `[dieren-app.html](dieren-app.html)`. Open de file in je browser. Je ziet een lijstje dieren op een web pagina. Als je de inhoud van de file bekijkt dan zie je de definitie van het JSON data object met dier definities.
 
 Download de file naar je computer. Open de file in een text editor. Verander de prijs van Bear van 800 naar 1900. Voeg een Dog object toe:
 ```
