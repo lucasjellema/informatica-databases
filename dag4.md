@@ -37,6 +37,9 @@ Sla de wijzigingen op. Open de file in een browser. Check of de aanpassingen in 
 Bonus:
 Je kunt in de Browser Developer Tools naar de tab Console gaan. In de Console kan je de string `animals` typen. Je krijgt de waarde te zien van die variable: het JSON data object. Je kunt vervolgens de data bewerken in de console. Wijzig bijvoorbeeld *Lion* naar *Lioness* en druk op de knop *Refresh*. 
 
+
+Tip: in plaats de file te downloaden kan je ook de inhoud van de dieren-app.html file kopiëren in de HTML editor in de website https://jsfiddle.net/ . Druk vervolgens op Run om de code uit te voeren.
+
 ### Simpel JSON
 
 Open https://jsonformatter.org/ - een website die helpt met werken met JSON documenten.
