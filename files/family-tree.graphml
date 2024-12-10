@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns"  
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+         xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns 
+         http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+  <graph id="G" edgedefault="directed">
+    <!-- Nodes -->
+    <node id="Anja"/>
+    <node id="Katie"/>
+    <node id="Stella"/>
+    <node id="Zade"/>
+    <node id="Bas"/>
+    <node id="Cynthia"/>
+    <node id="Dory"/>
+    <node id="Eli"/>
+    <node id="Ids"/>
+    <node id="Jip"/>
+    <node id="Lara"/>
+    <node id="Mirjam"/>
+    <node id="Nadia"/>
+    <node id="Otto"/>
+    <node id="Pia"/>
+    <node id="Rob"/>
+    <node id="Tijs"/>
+    <node id="Ursula"/>
+    <node id="Vic"/>
+    <node id="Willem"/>
+    <node id="Yuri"/>
+    <!-- Edges -->
+    <edge source="Bas" target="Anja"/>
+    <edge source="Cynthia" target="Anja"/>
+    <edge source="Dory" target="Bas"/>
+    <edge source="Eli" target="Cynthia"/>
+    <edge source="Ids" target="Eli"/>
+    <edge source="Jip" target="Eli"/>
+    <edge source="Lara" target="Katie"/>
+    <edge source="Mirjam" target="Katie"/>
+    <edge source="Nadia" target="Katie"/>
+    <edge source="Otto" target="Nadia"/>
+    <edge source="Pia" target="Nadia"/>
+    <edge source="Rob" target="Otto"/>
+    <edge source="Tijs" target="Stella"/>
+    <edge source="Ursula" target="Tijs"/>
+    <edge source="Vic" target="Tijs"/>
+    <edge source="Willem" target="Vic"/>
+    <edge source="Yuri" target="Vic"/>
+  </graph>
+</graphml>

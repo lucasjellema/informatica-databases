@@ -1,0 +1,35 @@
+graph TD
+    OomDagobert -->|Uncle of| DonaldDuck
+    OomDagobert -->|Uncle of| DellaDuck
+    OomDagobert -->|Uncle of| HortenseMcDuck
+    HortenseMcDuck -->|Mother of| DonaldDuck
+    HortenseMcDuck -->|Mother of| DellaDuck
+    HortenseMcDuck -->|Sister of| QuackmoreDuck
+    QuackmoreDuck -->|Father of| DonaldDuck
+    QuackmoreDuck -->|Father of| DellaDuck
+    OmaDuck -->|Grandmother of| GijsGans
+    OmaDuck -->|Grandmother of| GladstoneGander
+    OmaDuck -->|Grandmother of| DonaldDuck
+    DellaDuck -->|Mother of| KwikDuck
+    DellaDuck -->|Mother of| KwekDuck
+    DellaDuck -->|Mother of| KwakDuck
+    DonaldDuck -->|Uncle of| KwikDuck
+    DonaldDuck -->|Uncle of| KwekDuck
+    DonaldDuck -->|Uncle of| KwakDuck
+    KatrienDuck -->|Partner of| DonaldDuck
+    KatrienDuck -->|Aunt of| LizzyDuck
+    KatrienDuck -->|Aunt of| JuultjeDuck
+    KatrienDuck -->|Aunt of| BabetjeDuck
+    LizzyDuck -->|Niece of| KatrienDuck
+    JuultjeDuck -->|Niece of| KatrienDuck
+    BabetjeDuck -->|Niece of| KatrienDuck
+    DiederikDuck -->|Son of| OmaDuck
+    AngusMcDuck -->|Brother of| HortenseMcDuck
+    FergusMcDuck -->|Father of| HortenseMcDuck
+    FantomDuck -->|Alter Ego of| DonaldDuck
+    GuusGeluk -->|Cousin of| DonaldDuck
+    GuusGeluk -->|Cousin of| KatrienDuck
+    GijsGans -->|Cousin of| OmaDuck
+    GijsGans -->|Cousin of| DonaldDuck
+    MatildaMcDuck -->|Sister of| HortenseMcDuck
+    WhiteboardDuck -->|Brother of| HortenseMcDuck
