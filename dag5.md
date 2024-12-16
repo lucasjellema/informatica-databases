@@ -1,13 +1,15 @@
 # Graaf en GraphDB
 - [Graaf en GraphDB](#graaf-en-graphdb)
-  - [Bruggen van Königsberg](#bruggen-van-königsberg)
   - [Lootje Trekken](#lootje-trekken)
   - [Overstappen](#overstappen)
   - [Familie](#familie)
   - [Analyse van Reistijden](#analyse-van-reistijden)
-  - [Stadsbezoeken](#stadsbezoeken)
+  - [Vriendinnen op Stedentrip](#vriendinnen-op-stedentrip)
+  - [Paardensprongpuzzel](#paardensprongpuzzel)
   - [Overig](#overig)
+    - [Bruggen van Königsberg](#bruggen-van-königsberg)
     - [De Duckstad Stamboom](#de-duckstad-stamboom)
+    - [Verken Graaf Algoritmes](#verken-graaf-algoritmes)
 - [Introductie GraphDB - Neo4j](#introductie-graphdb---neo4j)
   - [Film-liefhebbers en Tips](#film-liefhebbers-en-tips)
   - [Familiegeschiedenis](#familiegeschiedenis)
@@ -15,18 +17,6 @@
   - [Reisplanner](#reisplanner)
   - [Bonus: Paardensprong](#bonus-paardensprong)
 
-## Bruggen van Königsberg 
-
-Deze graaf beschrijft de zeven bruggen van Königsberg:
-```
- C __
-/ \  \
- A -- D
-\ /__/ 
- B
-```
-
-We weten al dat je niet in één pad alle bruggen precies één keer van aflopen. Alle knooppunten hebben een oneven aantal bruggen, dat zit ons in de weg. 
 
 ## Lootje Trekken
 
@@ -75,6 +65,24 @@ W <=> S
 A <=> E
 
 Tip: je kunt ChatGPT vragen ("kan je van deze data een mermaid graph maken?") om deze data om te zetten naar een formaat dat je in de editor https://mermaid.live/ kan plakken, dat er een plaatje van maakt.
+
+Mermaid verwacht input die er zo uit ziet:
+```
+graph TD
+  A <--> B
+  B <--> C
+  C <--> E
+  C <--> P
+  P <--> Z
+  B <--> Z
+  E <--> W
+  W <--> P
+  Z <--> E
+  E <--> S
+  W <--> S
+  A <--> E
+```
+
 
 ## Familie
 Deze comma separated data bevat personen en voor (bijna) iedere persoon één van hun ouders:
@@ -203,7 +211,7 @@ Op welke manieren kan je van UC naar A reizen? Wat is de snelste reis van UC naa
 
 Waar staan eigenlijk deze afkortingen voor? (S, SZ, UC, A, H - kan je ze thuisbrengen? Tip: zie [extra informatie](https://www.ns.nl/rpx?ctx=arnu%7CfromStation%3D8400621%7CtoStation%3D8400567%7CplannedFromTime%3D2024-12-10T14%3A37%3A00%2B01%3A00%7CplannedArrivalTime%3D2024-12-10T14%3A56%3A00%2B01%3A00%7CexcludeHighSpeedTrains%3Dfalse%7CsearchForAccessibleTrip%3Dfalse%7ClocalTrainsOnly%3Dfalse%7CtravelAssistance%3Dfalse%7CtripSummaryHash%3D446193610))
 
-## Stadsbezoeken
+## Vriendinnen op Stedentrip
 
 Deze data beschrijft vijf vriendinnen die steden hebben bezocht:
 ```
@@ -237,40 +245,20 @@ Met een graaf (bijvoorbeeld in https://csacademy.com/app/graph_editor/ - vervang
 
 
 
-## Overig
+## Paardensprongpuzzel
 
-Op deze site https://graphonline.top/en/ kan je een graph samenstellen en vervolgens ook analyseren.
+Dit is een paardensprongpuzzel:
 
-leuke visualisatie: https://flourish.studio/visualisations/network-charts/ 
-https://gephi.org/gephi-lite/
-
-
-
-
-### De Duckstad Stamboom
-De file [duckstad-familiy-tree-mermaid.txt](files/duckstad-familiy-tree-mermaid.txt) bevat een deel van de stamboom van Duckstad, in een formaat dat kan worden weergegeven door de Mermaid visualization tool. Bekijk de inhoud van deze file en probeer te begrijpen wat de data beschrijft. Bijvoorbeeld hoe de relatie is tussen Donald Duck en Kwik.  
-
-Open de website https://mermaid.live/. Start een nieuwe visualisatie en copy & paste de inhoud van bovenstaande file. Bekijk de visualisatie. Ook dit is een graaf.
-
-
-Play met Dijkstra's algoritme:
-https://mikedombo.github.io/graphPlayground/
-
-https://www.algorithmsvisualizer.com/
-
-
-Paardensprong puzzel
-
-
-
-
+```
 B A S
 E   A
 T A D
+```
 
+En op deze site kan de paardensprongpuzzel als graaf weergeven: https://mermaid.live/
 
-https://mermaid.live/
-
+Door onderstaande code te plakken in de editor:
+```
 graph TD
 
 
@@ -298,23 +286,130 @@ graph TD
 
     C3["D"] --> A2
     C3 --> B1
+```
+
+De puzzel vereenvoudigt nu tot een pad dat je afloopt in de ene of de andere richting - beginnend bij willekeurig welke letter. 
+
+
+## Overig
+
+Op deze site https://graphonline.top/en/ kan je een graph samenstellen en vervolgens ook analyseren.
+
+leuke visualisatie: https://flourish.studio/visualisations/network-charts/ en https://gephi.org/gephi-lite/
+
+### Bruggen van Königsberg 
+
+Deze graaf beschrijft de zeven bruggen van Königsberg:
+```
+ C __
+/ \  \
+ A -- D
+\ /__/ 
+ B
+```
+
+We weten al dat je niet in één pad alle bruggen precies één keer van aflopen. Alle knooppunten hebben een oneven aantal bruggen, dat zit ons in de weg. 
+
+
+
+### De Duckstad Stamboom
+De file [duckstad-familiy-tree-mermaid.txt](files/duckstad-familiy-tree-mermaid.txt) bevat een deel van de stamboom van Duckstad, in een formaat dat kan worden weergegeven door de Mermaid visualization tool. Bekijk de inhoud van deze file en probeer te begrijpen wat de data beschrijft. Bijvoorbeeld hoe de relatie is tussen Donald Duck en Kwik.  
+
+Open de website https://mermaid.live/. Start een nieuwe visualisatie en copy & paste de inhoud van bovenstaande file. Bekijk de visualisatie. Ook dit is een graaf.
+
+### Verken Graaf Algoritmes
+
+Play met Dijkstra's algoritme:
+https://mikedombo.github.io/graphPlayground/
+
+https://www.algorithmsvisualizer.com/
+
 
 
 
 # Introductie GraphDB - Neo4j 
 
-Ga naar https://test-drive.neo4j.com/?auto-start=1&usecase=stackoverflow2 
+In deze sectie ga je een aantal experimenten uitvoeren met Neo4j - een Graph Database. Om dat te kunnen doen, moet je bij een draaiende Neo4j database omgeving kunnen. Je kan de open source en gratis community edition van Neo4j installeren op je eigen computer. Maar het is makkelijker om een sandbox omgeving aan te vragen. Je doet dat via de volgende stappen:
 
-https://test-drive.neo4j.com/?auto-start=1
+* Ga naar https://neo4j.com/sandbox/ ; klik op de knop *Launch the free sandbox*
+![](files/images/free-sandbox20241212141109.png)
+Je gaat nu naar een login formulier:
+![](files/images/login20241212141159.png)
+* Als je een Google, Twitter/X of LinkedIn account hebt kan je dat account gebruiken; klik op de bijbehorende link, anders moet je een nieuw account aanmaken; dat moet gekoppeld zijn aan een geldig email-adres. Klik daarvoor op *Sign Up*
+* Voer een geldig email-adres in; klik op *Continue*
+![](files/images/emailadres20241212141257.png) 
+* Voer een wachtwoord in dat voldoet aan de eisen; klik op *Continue*
+![](files/images/wachtwoord20241212141338.png)
+* Accepteer de voorwaarden; druk op *Next*
+![](files/images/conditions20241212141402.png)
+* Geef je voornaam, achternaam en het land waar je woont; dit hoeven geen geldige gegevens te zijn
+![](files/images/details20241212141449.png)
+* Er verschijnt nu een boodschap over een verificatie-email. Deze ontvang je op het opgegeven emailadres. Je moet de ontvangst van de mail bevestigen
+![](files/images/email-verification20241212141540.png)
+
+* Ga naar je email client. Je zou een mail van Neo4j moeten ontvangen.
+![](files/images/neo4jemail20241212141619.png)
+In de mail zou een button of link moeten staan. Ik zag hem niet. Maar op de plek waar hij had moeten staan kon ik klikken (een link activeren). Daarmee heb ik de ontvangst van de email bevestigd.
+
+Een nieuwe webpagina opent met een mededeling over de ontvangst van de email (en daarmee de bevestiging van je emailadres)
+
+Ga terug het browser-venster waar de mededeling stond over de verificatie-mail. Klik op *Refresh*.
+![](files/images/refresh20241212141851.png)
+Je komt nu in een scherm waar je een projecttype kan selecteren voor je Neo4j Sandbox:
+![](files/images/projectSandbox20241212141924.png)
+Scroll naar beneden tot je bij *Blank Sandbox* komt. Selecteer deze. Klik dan op de knop *Create and Download Credentials*
+![](files/images/createandownload20241212142015.png)
+Je ziet een melding over een nieuwe sandbox die wordt gestart:
+![](files/images/startSandbox20241212142052.png)
+Kort daarna moet je een file downloaden. Je hebt die file verder niet nodig.
+![](files/images/downloadcredentials.png)
+Je krijgt als het goed is nu te zien dat het Sandbox Project de status *Running* heeft. Er is een *Open* knop om de sandbox n de browser te openen. Selecteer die optie:
+![](files/images/open20241212142226.png)
+De sandbox wordt geopend. Je kunt eindelijk aan de slag. Eerst nog even de knop *Sandbox Login* indrukken:
+![](files/images/sandboxlogin20241212142319.png)
+
+Nu ben je echt klaar om te starten. Je kunt in het bovenste kader een Cypher commando invoeren. Door op de blauwe driehoek te klikken kan je het statement laten uitvoeren. 
+![](files/images/klaarvoordestarft20241212142529.png)
+
+Een voorbeeld statement:
+```
+MATCH (N) return N;
+```
+om alle nodes te laten zien. Nu nog geen enkele natuurlijk.
+
+En:
+```
+CREATE (:School {name: "Griftland College", plaats: "Soest", oprichtingsjaar: 1975, wikipedia:"https://nl.wikipedia.org/wiki/Griftland_College"});
+```
+Dit statement maakt een nieuwe node aan van het type School met twee eigenschappen.
+
+Doe nu opnieuw:
+```
+MATCH (N) return N;
+```
+om de nieuwe node te laten zien.
+
+Dit is zoiets als in SQL `select * from <alle tabellen in de database>`.
+
+Een meer gerichte query zou zijn:
+```
+MATCH (N:School) return N;
+```
+(zoiets als `select * from scholen`)
+
+of 
+
+```
+MATCH (N:School{plaats:"Soest"}) return N;
+```
+(zoiets als `select * from scholen where plaats = 'Soest'`)
 
 
 ## Film-liefhebbers en Tips
 
 Gebruik de Cypher statements in file [movie-lovers.cypher](files/movie-lovers.cypher) om nodes en edges aan te maken in de Neo4j database. Deze statements maken drie nodes voor Personen (Alice, Bob, Carol) en vijf films. Ook worden verbindingen gelegd om het enthousiasme van een persoon voor een film aan te geven. 
 
-Bekijk het hele netwerk met dit statement:
-
-Alle nodes en relaties in de database kan je opvragen met:
+Bekijk het hele netwerk (Alle nodes en relaties in de database) met:
 ```
 MATCH (m)
 RETURN m;
@@ -399,7 +494,7 @@ Gebruik de statements in de file [files/family-tree.cypher](files/family-tree.cy
 
 Bekijk de resulterende graaf met `match (n) return n;` 
 
-Als we nu willen weten wie de oma is van Giri kunnen we de vraag stellen in CYPHER:
+Als we nu willen weten wie de oma is van Giri kunnen we de vraag stellen in Cypher:
 ```
 MATCH (giri:Person {name: "Giri"})-[:CHILD_OF]->(:Person)-[:CHILD_OF]->(grandmother:Person)
 RETURN grandmother.name AS Grandmother;
@@ -435,7 +530,7 @@ De graaf in Neo4j ziet er als volgt uit:
 
 We hadden al eerder gekeken naar de meest populaire stad, met de hand en in de ruwe data of de graafrepresentatie.
 
-Je kunt dat ook met CYPHER opvragen uit Neo4j:
+Je kunt dat ook met Cypher opvragen uit Neo4j:
 
 ```
 MATCH (v:Vriendin)-[:BEZOEK_AAN]->(s:Stad)
@@ -512,7 +607,7 @@ Deze matrix bevat de reistijden in minuten tussen verschillende locaties. Iedere
 | HS  |     | 10  |     |     |     |     |     |     |     | X   |     |
 | H   |     |     |     |     |     |     |     | 5   | 12  | 3   | X   |
 
-Deze data is ook beschikbaar in CYPHER statements, in de file [reisplanner.cypher](files/reisplanner.cypher). Maak in Neo4j met deze CYPHER commando's de graaf aan van de stations en de onderlinge reistijden.
+Deze data is ook beschikbaar in Cypher statements, in de file [reisplanner.cypher](files/reisplanner.cypher). Maak in Neo4j met deze Cypher commando's de graaf aan van de stations en de onderlinge reistijden.
 
 Het resultaat ziet er ongeveer zo uit
 ![](files/images/20241212092406.png)
@@ -549,7 +644,7 @@ limit 2
 
 Start op Station S(oest) en vindt de paden via spoorverbindingen naar Station UC (Utrecht Centraal). Zorg dat ieder station maar één keer wordt bezocht (daar zorgt de tweede regel voor). Geef als resultaat alle stations waar je langs komt en ook de totale reistijd via een pad - dat wordt berekend door het *reduce* commando. Sorteer de resultaten op reistijd met de kortste eerst en geef twee resultaten terug.
 
-Je zou kunnen kijken wat er gebeurt met de resultaten als je wel de verbindingen van B(aarn) naar H(ilversum) en A(mersfoort) toevoegt, met behulp van dit CYPHER statement:
+Je zou kunnen kijken wat er gebeurt met de resultaten als je wel de verbindingen van B(aarn) naar H(ilversum) en A(mersfoort) toevoegt, met behulp van dit Cypher statement:
 ```
 MATCH (B:Station {name: "B"}), (H:Station {name: "H"}), (A:Station {name: "A"})
 MERGE (B)-[:spoor {reistijd: 6}]->(H)
@@ -608,7 +703,7 @@ T A D
 
 ![](files/images/2024-12-12-09-00-47.png)
 
-In deze letters zit een woord verstopt. CYPHER kan niet het juiste woord vinden maar kan je wel alle mogelijke paden voor deze set letters vertellen. Als je daar dan zelf het juiste woord uit selecteert heb je de puzzel opgelost:
+In deze letters zit een woord verstopt. Cypher kan niet het juiste woord vinden maar kan je wel alle mogelijke paden voor deze set letters vertellen. Als je daar dan zelf het juiste woord uit selecteert heb je de puzzel opgelost:
 
 ```
 MATCH (start:Letter)
